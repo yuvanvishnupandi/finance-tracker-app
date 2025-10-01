@@ -1,0 +1,18 @@
+<svg class="image" viewBox="0 0 400 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="150" cy="270" r="50" fill="#FFD700"/>
+    <circle cx="150" cy="270" r="40" fill="#F2A200"/>
+
+    <rect x="140" y="220" width="20" height="80" rx="5" fill="#50C878"/>
+    <path d="M150 220 C 180 180, 200 180, 230 150" stroke="#50C878" stroke-width="15" fill="none" stroke-linecap="round"/>
+    <path d="M150 220 C 120 180, 100 180, 70 150" stroke="#50C878" stroke-width="15" fill="none" stroke-linecap="round"/>
+
+    <path d="M250 300 L 280 250 L 320 200 L 370 150" stroke="#5D3FD3" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <circle cx="250" cy="300" r="8" fill="#5D3FD3"/>
+    <circle cx="370" cy="150" r="8" fill="#5D3FD3"/>
+
+    <path d="M370 150 L 355 165 M 370 150 L 385 165" stroke="#5D3FD3" stroke-width="8" fill="none" stroke-linecap="round"/>
+
+    <rect x="250" y="50" width="120" height="40" rx="10" fill="rgba(255, 255, 255, 0.2)"/>
+    <text x="310" y="75" font-family="Poppins, sans-serif" font-size="20" fill="white" text-anchor="middle">Start</text>
+</svg>
