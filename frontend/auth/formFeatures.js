@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- NO CHANGES TO THIS SECTION ---
+ 
     const togglePasswordIcons = document.querySelectorAll('.toggle-password');
 
     togglePasswordIcons.forEach(icon => {
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return isValid;
     };
 
-    // --- SUBMIT HANDLERS WITH CORRECTED PATHS ---
+ 
 
     signInForm.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -126,8 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     localStorage.setItem('authToken', data.token);
                     localStorage.setItem('username', data.username);
                     
-                    // --- CORRECTED PATH ---
-                    // This path goes UP one level from 'auth' to 'frontend', then INTO 'dashboard'.
+                  
                     window.location.href = '../dashboard/dashboard.html';
 
                 } else {

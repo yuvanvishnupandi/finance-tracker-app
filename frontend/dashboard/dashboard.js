@@ -1,186 +1,328 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- AUTHENTICATION & ROUTE PROTECTION ---
-    const authToken = localStorage.getItem('authToken');
-    const username = localStorage.getItem('username');
 
-    // --- CORRECTED PATH ---
-    /*
-    // TEMPORARILY DISABLED FOR DESIGNING - Re-enable when backend is ready
-    if (!authToken) {
-        window.location.href = '../auth/index.html'; 
-        return; 
-    }
-    */
+const appContainer = document.getElementById('appContainer'); 
+const themeToggleBtn = document.getElementById('themeToggleBtn');
+const notificationBtn = document.getElementById('notificationBtn');
+const notificationDropdown = document.getElementById('notificationDropdown');
+const notificationBadge = document.getElementById('notificationBadge');
 
-    // --- DOM ELEMENT SELECTORS ---
-    const appContainer = document.getElementById('app-container');
-    const sidebarToggleBtn = document.getElementById('sidebar-toggle');
-    const logoutBtn = document.getElementById('logout-btn');
-    const usernameDisplay = document.getElementById('username-display');
-    const themeSwitch = document.getElementById('theme-switch');
+const openMobileMenuBtn = document.getElementById('openMobileMenu');
+const closeMobileMenuBtn = document.getElementById('closeMobileMenu');
+const mobileMenu = document.getElementById('mobileMenu');
 
-    // --- UI INITIALIZATION ---
-    if (usernameDisplay && username) {
-        usernameDisplay.textContent = username;
-    } else if (usernameDisplay) {
-        usernameDisplay.textContent = "Guest User"; // Placeholder for designing
-    }
+const incomeVsExpenseChartElement = document.getElementById('incomeVsExpenseChart');
+const expenseBreakdownChartElement = document.getElementById('expenseBreakdownChart');
 
-    if (localStorage.getItem('sidebar-collapsed') === 'true') {
-        appContainer.classList.add('collapsed');
-    }
+const searchInput = document.getElementById('searchInput');
 
-    // --- EVENT LISTENERS ---
-    if (sidebarToggleBtn) {
-        sidebarToggleBtn.addEventListener('click', () => {
-            appContainer.classList.toggle('collapsed');
-            const isCollapsed = appContainer.classList.contains('collapsed');
-            localStorage.setItem('sidebar-collapsed', isCollapsed);
-        });
-    }
+const viewAllLinks = document.querySelectorAll('.view-all-link');
+const manageLinks = document.querySelectorAll('.manage-link');
+const detailLinks = document.querySelectorAll('.detail-link');
 
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', () => {
-            localStorage.removeItem('authToken');
-            localStorage.removeItem('username');
-            // --- CORRECTED PATH ---
-            window.location.href = '../auth/index.html';
-        });
-    }
-    
-    // --- DARK MODE LOGIC ---
-    const enableDarkMode = () => {
-        document.body.classList.add('dark-mode');
-        localStorage.setItem('dark-mode', 'active');
-    };
-    const disableDarkMode = () => {
-        document.body.classList.remove('dark-mode');
-        localStorage.setItem('dark-mode', 'inactive');
-    };
+const logoutLink = document.querySelector('.logout-link'); 
 
-    if (localStorage.getItem('dark-mode') === 'active') {
-        enableDarkMode();
-    }
+const filterableItems = document.querySelectorAll('.filterable-item');
 
-    if (themeSwitch) {
-        themeSwitch.addEventListener('click', () => {
-            if (localStorage.getItem('dark-mode') !== 'active') {
-                enableDarkMode();
-            } else {
-                disableDarkMode();
-            }
-        });
+
+const desktopNavLinks = document.querySelectorAll('.desktop-nav .nav-link');
+
+
+
+const chartColors = {
+income: 'rgba(25, 135, 84, 1)', 
+expense: 'rgba(220, 53, 69, 1)', 
+categories: [
+'rgba(13, 110, 253, 1)', 
+'rgba(25, 135, 84, 1)', 
+'rgba(255, 193, 7, 1)', 
+'rgba(108, 117, 125, 1)', 
+'rgba(111, 66, 193, 1)' 
+]
+};
+
+
+let incomeVsExpenseChartInstance = null;
+let expenseBreakdownChartInstance = null;
+
+
+
+function getChartThemeColors() {
+const isDarkMode = document.body.classList.contains('dark-mode');
+return {
+grid: isDarkMode ? 'rgba(45, 55, 72, 0.5)' : 'rgba(233, 236, 239, 1)',
+text: isDarkMode ? '#EAEAEA' : '#212529',
+tooltipBg: isDarkMode ? '#1B2537' : '#FFFFFF',
+tooltipBorder: isDarkMode ? '#2D3748' : '#E9ECEF'
+};
+}
+
+
+
+function renderCharts() {
+    if (!incomeVsExpenseChartElement || !expenseBreakdownChartElement) {
+        return;
     }
 
-    // --- CHARTS INITIALIZATION (with placeholder data) ---
-    const monthlyTrendData = {
-        labels: ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
-        income: [50000, 52000, 48000, 55000, 60000, 58000],
-        expenses: [35000, 38000, 42000, 39000, 45000, 41000],
-    };
+    const theme = getChartThemeColors();
+    Chart.defaults.color = theme.text;
+    Chart.defaults.borderColor = theme.grid;
 
-    const expenseBreakdownData = {
-        labels: ['Food', 'Shopping', 'Transport', 'Bills', 'Entertainment'],
-        data: [8500, 4200, 2100, 3500, 1950],
-        colors: ['#0D6EFD', '#198754', '#FFC107', '#DC3545', '#6F42C1'],
-    };
+    if (incomeVsExpenseChartInstance) incomeVsExpenseChartInstance.destroy();
+    if (expenseBreakdownChartInstance) expenseBreakdownChartInstance.destroy();
 
-    const monthlyTrendCtx = document.getElementById('monthlyTrendChart')?.getContext('2d');
-    if (monthlyTrendCtx) {
-        new Chart(monthlyTrendCtx, {
-            type: 'bar',
-            data: {
-                labels: monthlyTrendData.labels,
-                datasets: [
-                    {
-                        label: 'Income',
-                        data: monthlyTrendData.income,
-                        backgroundColor: 'rgba(25, 135, 84, 0.7)',
-                        borderColor: 'rgba(25, 135, 84, 1)',
-                        borderWidth: 1,
-                        borderRadius: 6,
-                    },
-                    {
-                        label: 'Expenses',
-                        data: monthlyTrendData.expenses,
-                        backgroundColor: 'rgba(220, 53, 69, 0.7)',
-                        borderColor: 'rgba(220, 53, 69, 1)',
-                        borderWidth: 1,
-                        borderRadius: 6,
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: { 
-                    y: { 
-                        beginAtZero: true,
-                        ticks: {
-                            callback: function(value) {
-                                return '₹' + value / 1000 + 'k';
-                            }
-                        }
-                    } 
+
+
+    incomeVsExpenseChartInstance = new Chart(incomeVsExpenseChartElement, {
+        type: 'bar',
+        data: {
+            labels: ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+            datasets: [{
+                label: 'Income',
+                data: [50000, 52000, 48000, 58000, 60000, 59000],
+                backgroundColor: chartColors.income,
+                hoverBackgroundColor: chartColors.income
+            }, {
+                label: 'Expenses',
+                data: [35000, 38000, 42000, 39000, 45000, 40000],
+                backgroundColor: chartColors.expense,
+                hoverBackgroundColor: chartColors.expense
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    stacked: false,
+                    grid: { color: theme.grid, borderColor: theme.grid },
+                    ticks: { color: theme.text }
                 },
-                plugins: {
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                let label = context.dataset.label || '';
-                                if (label) {
-                                    label += ': ';
-                                }
-                                if (context.parsed.y !== null) {
-                                    label += new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(context.parsed.y);
-                                }
-                                return label;
-                            }
-                        }
+                y: {
+                    stacked: false,
+                    beginAtZero: true,
+                    grid: { color: theme.grid, borderColor: theme.grid },
+                    ticks: {
+                        color: theme.text,
+                        callback: function(value) { return '₹ ' + value.toLocaleString(); }
                     }
                 }
-            }
-        });
-    }
-
-    const expensePieCtx = document.getElementById('expensePieChart')?.getContext('2d');
-    if (expensePieCtx) {
-        new Chart(expensePieCtx, {
-            type: 'pie',
-            data: {
-                labels: expenseBreakdownData.labels,
-                datasets: [{
-                    label: 'Expenses',
-                    data: expenseBreakdownData.data,
-                    backgroundColor: expenseBreakdownData.colors,
-                    hoverOffset: 8,
-                    borderColor: document.body.classList.contains('dark-mode') ? '#1B2537' : '#FFFFFF',
-                    borderWidth: 4,
-                }]
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                let label = context.label || '';
-                                if (label) {
-                                    label += ': ';
-                                }
-                                if (context.parsed !== null) {
-                                    label += new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(context.parsed);
-                                }
-                                return label;
-                            }
-                        }
-                    }
-                }
+            plugins: {
+                legend: { labels: { color: theme.text } },
+                tooltip: {}
+            }
+        }
+    });
+
+
+    expenseBreakdownChartInstance = new Chart(expenseBreakdownChartElement, {
+        type: 'doughnut',
+        data: {
+            labels: ['Food', 'Shopping', 'Transport', 'Bills', 'Entertainment'],
+            datasets: [{
+                data: [25, 20, 15, 30, 10],
+                backgroundColor: chartColors.categories,
+                borderWidth: 0,
+                hoverOffset: 10
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '60%', 
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: { color: theme.text, boxWidth: 15 }
+                },
+                tooltip: {}
+            }
+        }
+    });
+}
+
+
+
+const savedTheme = localStorage.getItem('theme');
+
+
+if (savedTheme === 'dark-mode') {
+    document.body.classList.add('dark-mode');
+    themeToggleBtn.querySelector('i').className = 'fas fa-sun';
+    if (mobileMenu) mobileMenu.classList.add('dark-mode'); 
+} else {
+    document.body.classList.remove('dark-mode'); 
+    themeToggleBtn.querySelector('i').className = 'fas fa-moon'; 
+    if (mobileMenu) mobileMenu.classList.remove('dark-mode'); 
+}
+
+
+renderCharts();
+
+themeToggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    if (document.body.classList.contains('dark-mode')) {
+        localStorage.setItem('theme', 'dark-mode');
+        themeToggleBtn.querySelector('i').className = 'fas fa-sun';
+        if (mobileMenu) mobileMenu.classList.add('dark-mode');
+    } else {
+        localStorage.setItem('theme', 'light-mode');
+        themeToggleBtn.querySelector('i').className = 'fas fa-moon';
+        if (mobileMenu) mobileMenu.classList.remove('dark-mode'); 
+    }
+    renderCharts();
+});
+
+
+
+function toggleMobileMenu() {
+    mobileMenu.classList.toggle('open');
+}
+if (openMobileMenuBtn && closeMobileMenuBtn && mobileMenu) {
+    openMobileMenuBtn.addEventListener('click', toggleMobileMenu);
+    closeMobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+    mobileMenu.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            if (mobileMenu.classList.contains('open')) {
+                mobileMenu.classList.remove('open');
             }
         });
+    });
+}
+
+
+if (notificationBtn && notificationDropdown && notificationBadge) {
+    notificationBtn.addEventListener('click', (event) => {
+        notificationDropdown.classList.toggle('active');
+        if (notificationDropdown.classList.contains('active')) {
+            setTimeout(() => {
+                notificationBadge.textContent = '0';
+                notificationBadge.style.display = 'none';
+            }, 500);
+        }
+        event.stopPropagation();
+    });
+
+    document.addEventListener('click', (event) => {
+        if (
+            !notificationDropdown.contains(event.target) &&
+            !notificationBtn.contains(event.target)
+        ) {
+            notificationDropdown.classList.remove('active');
+        }
+    });
+
+    if (notificationBadge.textContent === '0') {
+        notificationBadge.style.display = 'none';
+    } else {
+        notificationBadge.style.display = 'block';
     }
+}
+
+document.querySelectorAll('.custom-select').forEach(select => {
+    select.addEventListener('change', (e) => {
+        const container = e.target.closest('.chart-card') || e.target.closest('.stat-card');
+        const cardTitleElement = container ? container.querySelector('h4, p') : null;
+        const cardTitle = cardTitleElement ? cardTitleElement.textContent.split('(')[0].trim() : 'Filter';
+        console.log(`${cardTitle} filter changed to: ${e.target.value}`);
+    });
+});
+
+
+desktopNavLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        const linkText = link.textContent.trim();
+        let targetPage = '';
+
+        if (linkText.includes('Dashboard')) {
+            targetPage = 'dashboard.html';
+        } else if (linkText.includes('Transactions')) {
+            targetPage = 'transactions.html';
+        } else if (linkText.includes('Accounts')) {
+            targetPage = 'accounts.html';
+        } else if (linkText.includes('Saving Goals')) {
+            targetPage = 'saving-goals.html';
+        } else if (linkText.includes('Budgeting')) {
+            targetPage = 'budgeting.html';
+        } else {
+            return; 
+        }
+
+        e.preventDefault(); 
+        console.log(`Navigating to: ${targetPage}`);
+        window.location.href = targetPage;
+    });
+});
+
+
+
+viewAllLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault(); 
+        console.log('Navigating to: Transactions Page (from Dashboard link)');
+        window.location.href = 'transactions.html'; 
+    });
+});
+
+
+manageLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log('Navigating to: Budgeting/Manage Limits Page (from Dashboard link)');
+        window.location.href = 'budgeting.html'; 
+    });
+});
+
+
+detailLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log('Navigating to: Accounts/Detailed Stats Page (from Dashboard link)');
+        window.location.href = 'accounts.html'; 
+    });
+});
+
+
+const mobileMenuItems = document.querySelectorAll('#mobileMenu .nav-link');
+
+if (searchInput) {
+    searchInput.addEventListener('input', (event) => {
+        const searchTerm = event.target.value.toLowerCase().trim();
+
+        if (event.target.closest('#mobileMenu')) {
+             mobileMenuItems.forEach(item => {
+                const itemText = item.textContent.toLowerCase();
+
+                if (itemText.includes(searchTerm)) {
+                    item.style.display = 'flex'; 
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    });
+} else {
+    console.warn("Search input with ID 'searchInput' was not found. Search functionality is disabled.");
+}
+
+
+
+
+if (logoutLink) {
+    logoutLink.addEventListener('click', (e) => {
+        e.preventDefault(); 
+        
+        localStorage.removeItem('theme'); 
+        console.log('User logged out. Redirecting to login page.');
+        
+ 
+        window.location.href = 'http://127.0.0.1:5501/auth/index.html'; 
+    });
+} else {
+    
+    console.warn("Logout link (selector '.logout-link' or by ID) not found. Logout functionality is disabled.");
+}
+
+
 });

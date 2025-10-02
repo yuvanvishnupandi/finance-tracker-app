@@ -3,119 +3,253 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Finance Tracker</title>
-    <!-- Link to your existing global styles if you have one, or a new dashboard-specific one -->
+    <title>FinTrakk - Dashboard</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="dashboard.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
-    <div class="app-container" id="app-container">
-        <!-- ===== Sidebar ===== -->
-        <aside class="sidebar" id="sidebar">
-            <div class="sidebar-header">
-                <h2 class="sidebar-logo">FinTrack</h2>
-                <button class="sidebar-toggle" id="sidebar-toggle" title="Toggle Sidebar">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-            </div>
-            <nav class="sidebar-nav">
-                <a href="#" class="nav-link active" title="Dashboard">
-                    <i class="fas fa-chart-pie"></i>
-                    <span>Dashboard</span>
-                </a>
-                <a href="#" class="nav-link" title="Transactions">
-                    <i class="fas fa-exchange-alt"></i>
-                    <span>Transactions</span>
-                </a>
-                <a href="#" class="nav-link" title="Accounts">
-                    <i class="fas fa-wallet"></i>
-                    <span>Accounts</span>
-                </a>
-                <a href="#" class="nav-link" title="Budgets">
-                    <i class="fas fa-bullseye"></i>
-                    <span>Budgets</span>
-                </a>
-                <a href="#" class="nav-link" title="Goals">
-                    <i class="fas fa-star"></i>
-                    <span>Goals</span>
-                </a>
-            </nav>
-            <div class="sidebar-footer">
-                <div class="user-profile">
-                    <i class="fas fa-user-circle"></i>
-                    <span id="username-display">user@email.com</span>
-                </div>
-                <button id="logout-btn" class="logout-button" title="Logout">
-                    <i class="fas fa-sign-out-alt"></i>
-                </button>
-            </div>
-        </aside>
+<body class="dark-mode"> 
+    <div class="app-container" id="appContainer">
 
-        <!-- ===== Main Content ===== -->
-        <main class="main-content">
-            <header class="main-header">
-                <h1 id="page-title">Dashboard</h1>
-                <button id="theme-switch" aria-label="Toggle dark mode">
-                    <i class="fas fa-moon moon-icon"></i>
-                    <i class="fas fa-sun sun-icon"></i>
-                </button>
+        <nav id="mobileMenu" class="mobile-menu">
+            <button class="close-btn" id="closeMobileMenu"><i class="fas fa-times"></i></button>
+            <div class="menu-search-box">
+                 <input type="text" placeholder="Search menu items..." class="search-input">
+                 <i class="fas fa-search search-icon"></i>
+            </div>
+
+            <a href="#" class="nav-link active"><i class="fas fa-home"></i> Dashboard</a>
+            <a href="#" class="nav-link"><i class="fas fa-exchange-alt"></i> Transactions</a>
+            <a href="#" class="nav-link"><i class="fas fa-wallet"></i> Accounts</a>
+            <a href="#" class="nav-link"><i class="fas fa-bullseye"></i> Saving Goals</a>
+            <a href="#" class="nav-link"><i class="fas fa-tasks"></i> Budgeting</a>
+            <a href="#" class="nav-link"><i class="fas fa-cog"></i> Settings</a>
+            
+            <a href="#" class="nav-link logout-mobile"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </nav>
+        
+        <div class="main-content-wrapper">
+            
+            <header id="main-header">
+                <div class="header-left">
+                    <div class="sticky-logo-title-area">
+                        <img id="customLogo" src="new_full_logo.png" alt="My Brand" class="main-header-logo">
+                        </div>
+                </div>
+
+                <nav class="desktop-nav">
+                    <a href="#" class="nav-link active">Dashboard</a>
+                    <a href="#" class="nav-link">Transactions</a>
+                    <a href="#" class="nav-link">Accounts</a>
+                    <a href="#" class="nav-link">Saving Goals</a>
+                    <a href="#" class="nav-link">Budgeting</a>
+                </nav>
+
+                <div class="header-right">
+                    <button id="openMobileMenu" class="icon-btn menu-toggle-mobile" title="Menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <div class="search-box desktop-search">
+                        <input type="text" placeholder="Search transactions, accounts..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+
+                    <button id="themeToggleBtn" class="icon-btn" title="Toggle Dark/Light Mode">
+                        <i class="fas fa-moon"></i> 
+                        </button>
+                    
+                    <div class="notification-area">
+                        <button id="notificationBtn" class="icon-btn" title="Notifications">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge" id="notificationBadge">3</span>
+                        </button>
+                        <div class="notification-dropdown" id="notificationDropdown">
+                            <h5>Notifications</h5>
+                            <a href="#" class="notification-item">Budget limit exceeded for Food!</a>
+                            <a href="#" class="notification-item">Monthly report ready.</a>
+                            <a href="#" class="notification-item">Large transaction detected.</a>
+                        </div>
+                    </div>
+
+                    <div class="user-profile">
+                        <div class="user-details">
+                            <p class="user-name">John Doe</p> 
+                            <span class="user-email">john@example.com</span>
+                        </div>
+                        <a href="#" class="logout-link desktop-logout" title="Logout"><i class="fas fa-sign-out-alt"></i></a>
+                    </div>
+                </div>
             </header>
 
-            <div class="content-wrapper">
-                <!-- Row 1: Summary Cards -->
-                <section class="summary-cards">
-                    <div class="card stat-card">
-                        <div class="card-icon-wrapper icon-balance">
-                            <i class="fas fa-wallet"></i>
-                        </div>
-                        <div class="card-content">
-                            <h3>Total Balance</h3>
-                            <p>₹1,25,430.50</p>
+            <main id="main-content">
+                <div class="content-grid">
+                    
+                    <div class="stat-card">
+                        <div class="card-icon balance" style="background-color: var(--primary-blue-light); color: var(--primary-blue);"><i class="fas fa-coins"></i></div>
+                        <div class="card-info">
+                            <p>Current Balance</p>
+                            <h3>₹ 1,50,450</h3>
                         </div>
                     </div>
-                    <div class="card stat-card">
-                         <div class="card-icon-wrapper icon-income">
-                            <i class="fas fa-arrow-up"></i>
+                    <div class="stat-card">
+                        <div class="card-info">
+                            <div class="stat-filter-wrapper">
+                                <p>Total Income</p>
+                                <select class="custom-select stat-filter">
+                                    <option value="this-month">This Month</option>
+                                    <option value="last-month">Last Month</option>
+                                    <option value="6-months">Last 6 Months</option>
+                                    <option value="last-year">Last Year</option>
+                                    <option value="this-year">This Year</option>
+                                </select>
+                            </div>
+                            <h3>₹ 1,25,000</h3>
                         </div>
-                        <div class="card-content">
-                            <h3>Monthly Income</h3>
-                            <p>₹50,000.00</p>
+                        <div class="card-icon income" style="background-color: #dcfce7; color: var(--green-success);"><i class="fas fa-arrow-alt-circle-up"></i></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="card-info">
+                            <div class="stat-filter-wrapper">
+                                <p>Total Expenses</p>
+                                <select class="custom-select stat-filter">
+                                    <option value="this-month">This Month</option>
+                                    <option value="last-month">Last Month</option>
+                                    <option value="6-months">Last 6 Months</option>
+                                    <option value="last-year">Last Year</option>
+                                    <option value="this-year">This Year</option>
+                                </select>
+                            </div>
+                            <h3>₹ 48,000</h3>
+                        </div>
+                        <div class="card-icon expense" style="background-color: #fee2e2; color: var(--red-danger);"><i class="fas fa-arrow-alt-circle-down"></i></div>
+                    </div>
+                    
+                    <div class="chart-card large-card">
+                        <div class="card-header">
+                            <h4>Income vs. Expense</h4>
+                            <div class="chart-filter">
+                                <select class="custom-select">
+                                    <option value="this-month">This Month</option>
+                                    <option value="last-month">Last Month</option>
+                                    <option value="6-months">Last 6 Months</option>
+                                    <option value="last-year">Last Year</option>
+                                    <option value="this-year">This Year</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="incomeVsExpenseChart"></canvas>
                         </div>
                     </div>
-                    <div class="card stat-card">
-                         <div class="card-icon-wrapper icon-expense">
-                            <i class="fas fa-arrow-down"></i>
+                    
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <h4>Expense Breakdown</h4>
+                            <div class="chart-filter">
+                                <select class="custom-select">
+                                    <option value="this-month">This Month</option>
+                                    <option value="last-month">Last Month</option>
+                                    <option value="6-months">Last 6 Months</option>
+                                    <option value="last-year">Last Year</option>
+                                    <option value="this-year">This Year</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="card-content">
-                            <h3>Monthly Expenses</h3>
-                            <p>₹18,210.00</p>
+                        <div class="donut-chart-container">
+                            <canvas id="expenseBreakdownChart"></canvas>
                         </div>
                     </div>
-                </section>
 
-                <!-- Row 2: Charts -->
-                <section class="charts-section">
-                    <div class="card chart-container">
-                        <h3>Income vs. Expense (Last 6 Months)</h3>
-                        <div class="chart-wrapper">
-                            <canvas id="monthlyTrendChart"></canvas>
+                    <div class="details-card">
+                        <div class="card-header">
+                            <h4>Recent Transactions</h4>
+                            <a href="#" class="view-all-link">View All</a>
+                        </div>
+                        <ul class="transaction-list">
+                            <li>
+                                <div class="transaction-icon" style="background-color: var(--primary-blue-light); color: var(--primary-blue);"><i class="fas fa-car"></i></div>
+                                <div class="transaction-details">
+                                    <p>Fuel Expenses</p>
+                                    <span>Sep 30, 2025</span>
+                                </div>
+                                <span class="transaction-amount expense">-₹ 5,500</span>
+                            </li>
+                            <li>
+                                <div class="transaction-icon" style="background-color: #dcfce7; color: var(--green-success);"><i class="fas fa-briefcase"></i></div>
+                                <div class="transaction-details">
+                                    <p>Monthly Salary</p>
+                                    <span>Sep 28, 2025</span>
+                                </div>
+                                <span class="transaction-amount income">+₹ 55,000</span>
+                            </li>
+                            <li>
+                                <div class="transaction-icon" style="background-color: #fee2e2; color: var(--red-danger);"><i class="fas fa-utensils"></i></div>
+                                <div class="transaction-details">
+                                    <p>Restaurant Dinner</p>
+                                    <span>Sep 27, 2025</span>
+                                </div>
+                                <span class="transaction-amount expense">-₹ 1,250</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="details-card">
+                        <div class="card-header">
+                            <h4>Spending Limits</h4>
+                            <a href="#" class="view-all-link">Manage</a>
+                        </div>
+                        <ul class="progress-list">
+                            <li>
+                                <div class="progress-info">
+                                    <span>Food</span>
+                                    <span>₹ 3,500 / ₹ 5,000</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div style="width: 70%; background-color: var(--primary-blue);"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="progress-info">
+                                    <span>Shopping</span>
+                                    <span style="color: var(--red-danger); font-weight: 600;">₹ 8,000 / ₹ 7,000</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div style="width: 100%; background-color: var(--red-danger);"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="progress-info">
+                                    <span>Bills</span>
+                                    <span>₹ 25,000 / ₹ 30,000</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div style="width: 83%; background-color: var(--green-success);"></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="details-card">
+                        <div class="card-header">
+                            <h4>Quick Stats</h4>
+                            <a href="#" class="view-all-link">Details</a>
+                        </div>
+                        <div class="stat-list">
+                            <p style="font-weight: 500; margin-bottom: 0.5rem; color: var(--text-primary);">Savings Rate: <span style="float: right; color: var(--green-success);">62%</span></p>
+                            <p style="font-weight: 500; margin-bottom: 0.5rem; color: var(--text-primary);">Highest Expense Category: <span style="float: right; color: var(--red-danger);">Food</span></p>
+                            <p style="font-weight: 500; margin-bottom: 0.5rem; color: var(--text-primary);">Net Change (30 Days): <span style="float: right; color: var(--green-success);">+₹ 77,000</span></p>
                         </div>
                     </div>
-                    <div class="card chart-container">
-                        <h3>Expense Breakdown</h3>
-                        <div class="chart-wrapper">
-                            <canvas id="expensePieChart"></canvas>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </main>
+
+                </div>
+            </main>
+        </div>
+
     </div>
-    
+
     <script src="dashboard.js"></script>
-    <!-- Use a shared script for dark mode -->
-    <!-- <script src="../scripts/darkmode.js"></script>  -->
 </body>
 </html>
-

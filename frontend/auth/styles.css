@@ -1,5 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
 
+.auth-header {
+    position: absolute;
+    top: 30px;  
+    left: 50px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+}
+
+.auth-logo {
+    height: 75px; 
+    width: auto;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); /* Adds a subtle shadow */
+}
+
+
 
 
 :root {
