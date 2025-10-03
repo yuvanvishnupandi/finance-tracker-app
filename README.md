@@ -1,4 +1,5 @@
-# 💰 FinTrakk: Personal Finance Tracker Application
+# <img width="766" height="258" alt="image" src="https://github.com/user-attachments/assets/bc7b064b-8520-4f58-87a4-54c43989bef5" />
+# FinTrakk: Personal Finance Tracker Application
 
 FinTrakk is a comprehensive, full-stack personal finance application designed to help users gain granular control over their money. It allows for detailed transaction tracking, goal setting, and proactive budget management, offering a clear, visual overview of financial health.
 
