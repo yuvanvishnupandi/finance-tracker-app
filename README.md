@@ -61,21 +61,7 @@ You need **Node.js** and **npm** (or Yarn) installed to run the backend and pote
     ```
     *Ensure the frontend is running on **`http://127.0.0.1:5500`** (or similar) as expected by the JavaScript logic.*
 
-## 📂 Project Structure
 
-finance-tracker-app/
-├── .git/
-├── backend/                  # API server (Node/Express/Java, etc.)
-├── frontend/                 # Pure HTML, CSS, JS client files
-│   ├── auth/                 # Login/Signup pages (index.html)
-│   ├── dashboard/            # Dashboard view
-│   ├── transactions/         # Transaction management view
-│   ├── accounts/             # Accounts management view (NEW)
-│   ├── budgeting/            # Budgeting management view (NEW)
-│   └── saving-goals/         # Savings Goals view (NEXT)
-├── .gitignore
-├── LICENSE
-└── README.md
 
 
 ## 🤝 Contribution
