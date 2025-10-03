@@ -1,77 +1,72 @@
 # 💰 FinTrakk: Personal Finance Tracker Application
 
-FinTrakk is a comprehensive, full-stack personal finance application designed to help users gain granular control over their money. From tracking every transaction to setting actionable budgets and savings goals, FinTrakk provides a clear, visual overview of financial health.
+FinTrakk is a comprehensive, full-stack personal finance application designed to help users gain granular control over their money. It allows for detailed transaction tracking, goal setting, and proactive budget management, offering a clear, visual overview of financial health.
 
-## ✨ Features
+---
 
-This project focuses on building a responsive and interactive frontend paired with a robust backend architecture (implied).
+## ✨ Features and Project Status
 
-### Core Features Completed
+This project features a robust, responsive frontend that integrates with a powerful Java Spring Boot API.
 
-* **Secure Authentication:** Full user registration, login, and secure session management.
-* **Dynamic Navigation:** Seamless page transitions between all major application routes (Dashboard, Transactions, Accounts, Budgeting, Saving Goals) without full page reloads.
-* **Cross-Page Functionality:** Consistent implementation of Dark/Light Mode toggle, Notification Bell, and mobile navigation across all views.
-* **Fixed Navigation:** Ensures the theme toggle and navigation links work correctly across conflicting script environments (fixed by making `accounts.js`, `budgeting.js`, and `transactions.js` self-sufficient).
-
-### Financial Management Modules
+### Financial Management Modules (Frontend Complete)
 
 | Module | Key Functionality | Status |
 | :--- | :--- | :--- |
-| **Dashboard** | At-a-glance summary (Net Worth, Income/Expense totals), visual trend charts (Income vs. Expense, Category Breakdown). | Complete (Front-end Structure) |
-| **Transactions** | Full CRUD (Create, Read, Update, Delete) functionality for individual transactions, including filtering and sorting. | Complete (Front-end Logic) |
-| **Accounts** | **NEW!** Manage multiple financial accounts (Savings, Credit Card, Cash). Calculates **Total Net Worth** and allows users to edit or delete account cards. | Complete (Front-end Logic) |
-| **Budgeting** | **NEW!** Set and track monthly spending limits by category. Visual progress bars show spending against limits, with alert indicators for over-budget items. | Complete (Front-end Logic) |
-| **Saving Goals** | Set financial targets (e.g., "New MacBook Pro") and track visual progress toward the goal amount and target date. | Next Step |
+| **Dashboard** | At-a-glance financial summary, Net Worth display, Income vs. Expense charts, and Spending Breakdown analytics. | Complete |
+| **Transactions** | Full CRUD (Create, Read, Update, Delete) for transactions, with filtering and sorting options. | Complete |
+| **Accounts** | Management of multiple financial accounts (Savings, Credit Card, Cash), **Total Net Worth** calculation, and card-based editing/deletion. | Complete |
+| **Budgeting** | Setting and tracking monthly spending limits by category, visual progress bars, and over-budget alerts. | Complete |
+| **Saving Goals** | **In Progress.** Functionality to set financial targets (e.g., "New Phone") and track visual progress toward the goal amount. | Next Step |
+
+### UX & Accessibility
+
+* **Responsive Design:** Fully functional and optimized for mobile, tablet, and desktop views.
+* **Dark/Light Mode:** Full theme toggling implemented on all main application pages.
+* **Intuitive Navigation:** Seamless, conflict-free transitions and functioning logout across all application views.
+
+---
+
+## 🔑 Key Technologies
+
+| Category | Tools & Technologies |
+| :--- | :--- |
+| **Frontend (FE)** | **HTML5**, **CSS3** (Custom Variables), **Pure JavaScript (ES6+)**, **Chart.js** (for data visualization) |
+| **Backend (BE) & API** | **Java**, **Spring Boot** (Microservices & REST API), **MySQL** (Database), **Maven** (Dependency/Build Management), **JavaFX** (for potential advanced desktop features) |
+| **Tooling & Version Control** | **Git** |
+
+---
 
 ## 🚀 Getting Started
 
-This application is structured as a typical full-stack project with separate frontend and backend directories.
+To run the *FinTrakk* application locally, you need to start both the backend server and serve the frontend files.
 
 ### Prerequisites
 
-You need **Node.js** and **npm** (or Yarn) installed to run the backend and potentially install frontend dependencies.
+* **Java Development Kit (JDK)**
+* **MySQL Server**
+* **Maven**
+* **A local web server** (e.g., VS Code Live Server or `http-server`)
 
 ### Installation
 
 1.  **Clone the repository:**
     ```bash
-    git clone [YOUR REPOSITORY URL]
+    git clone https://github.com/yuvanvishnupandi/finance-tracker-app/
     cd finance-tracker-app
     ```
 
-2.  **Setup Backend (Mock or API):**
-    ```bash
-    cd backend
-    npm install
-    # Assuming you run the backend on port 8080 or similar
-    # node server.js 
-    ```
+2.  **Setup Backend (Java/Spring Boot):**
+    * Navigate to the `backend` directory.
+    * Use Maven to install dependencies and build the project.
+    * Configure your MySQL connection properties.
+    * Start the Spring Boot application.
 
-3.  **Setup Frontend:**
-    The frontend is built with pure HTML, CSS, and JavaScript. To run it, you need a local web server (like **Live Server** in VS Code or `http-server` via npm).
-
-    ```bash
-    # Option A: Using npm's http-server
-    # npm install -g http-server
-    # cd ..
-    # http-server .
-    
-    # Option B: Running with VS Code Live Server extension
-    # Open the project folder in VS Code, right-click 'index.html' inside the 'frontend/auth' folder, and select 'Open with Live Server'.
-    ```
-    *Ensure the frontend is running on **`http://127.0.0.1:5500`** (or similar) as expected by the JavaScript logic.*
-
-
-
-
-## 🤝 Contribution
-
-Contributions are welcome! If you find bugs or have suggestions, please open an issue or submit a pull request.
+3.  **Setup Frontend (HTML/JS):**
+    * Navigate to the `frontend/auth/index.html`.
+    * Open this file using your preferred local web server (e.g., VS Code Live Server, which usually runs on a port like `5500`).
 
 ---
 
-### 🔑 Key Technologies
+## 🤝 Contribution
 
-* **Frontend:** HTML5, CSS3 (Custom Variables), Pure JavaScript (ES6+), Chart.js
-* **Tooling:** Git
-* 
+Contributions are welcome! If you have suggestions, feature ideas, or encounter any bugs, please feel free to open an issue or submit a pull request.
