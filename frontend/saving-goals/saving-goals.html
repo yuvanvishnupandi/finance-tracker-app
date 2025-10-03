@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinTrakk - Saving Goals</title>
+    <link rel="icon" href="../logo.png" type="image/png"> 
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="../dashboard/dashboard.css"> 
+    <link rel="stylesheet" href="saving-goals.css">
+</head>
+<body class="dark-mode"> 
+    <div class="app-container" id="appContainer">
+
+        <nav id="mobileMenu" class="mobile-menu">
+            <button class="close-btn" id="closeMobileMenu"><i class="fas fa-times"></i></button>
+            <div class="menu-search-box">
+                 <input type="text" placeholder="Search menu items..." class="search-input">
+                 <i class="fas fa-search search-icon"></i>
+            </div>
+
+            <a href="../dashboard/dashboard.html" class="nav-link"><i class="fas fa-home"></i> Dashboard</a>
+            <a href="../transactions/transactions.html" class="nav-link"><i class="fas fa-exchange-alt"></i> Transactions</a>
+            <a href="../accounts/accounts.html" class="nav-link"><i class="fas fa-wallet"></i> Accounts</a>
+            <a href="saving-goals.html" class="nav-link active"><i class="fas fa-bullseye"></i> Saving Goals</a>
+            <a href="../budgeting/budgeting.html" class="nav-link"><i class="fas fa-tasks"></i> Budgeting</a>
+            <a href="#" class="nav-link"><i class="fas fa-cog"></i> Settings</a>
+            
+            <a href="../auth/index.html" class="nav-link logout-mobile"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </nav>
+        
+        <div class="main-content-wrapper">
+            
+            <header id="main-header">
+                <div class="header-left">
+                    <div class="sticky-logo-title-area">
+                        <img id="customLogo" src="../new_full_logo.png" alt="FinTrakk Logo" class="main-header-logo"> 
+                    </div>
+                </div>
+
+                <nav class="desktop-nav">
+                    <a href="../dashboard/dashboard.html" class="nav-link">Dashboard</a>
+                    <a href="../transactions/transactions.html" class="nav-link">Transactions</a>
+                    <a href="../accounts/accounts.html" class="nav-link">Accounts</a>
+                    <a href="saving-goals.html" class="nav-link active">Saving Goals</a>
+                    <a href="../budgeting/budgeting.html" class="nav-link">Budgeting</a>
+                </nav>
+
+                <div class="header-right">
+                    <button id="openMobileMenu" class="icon-btn menu-toggle-mobile" title="Menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <div class="search-box desktop-search">
+                        <input type="text" placeholder="Search goals, accounts..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+
+                    <button id="themeToggleBtn" class="icon-btn" title="Toggle Dark/Light Mode">
+                        <i class="fas fa-moon"></i> 
+                    </button>
+                    
+                    <div class="notification-area">
+                        <button id="notificationBtn" class="icon-btn" title="Notifications">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge" id="notificationBadge">3</span>
+                        </button>
+                        <div class="notification-dropdown" id="notificationDropdown">
+                            <h5>Notifications</h5>
+                            <a href="#" class="notification-item">Budget limit exceeded for Food!</a>
+                            <a href="#" class="notification-item">Goal "New Phone" is 90% complete!</a>
+                            <a href="#" class="notification-item">Monthly report ready.</a>
+                        </div>
+                    </div>
+
+                    <div class="user-profile">
+                        <div class="user-details">
+                            <p class="user-name">John Doe</p> 
+                            <span class="user-email">john@example.com</span>
+                        </div>
+                        <a href="../auth/index.html" class="logout-link desktop-logout" title="Logout"><i class="fas fa-sign-out-alt"></i></a>
+                    </div>
+                </div>
+            </header>
+            
+            <main id="main-content">
+                
+                <div class="goals-header-bar">
+                    <h1><i class="fas fa-bullseye page-icon"></i> Savings Goals</h1>
+                    <button id="add-goal-btn" class="btn-primary">➕ Set New Goal</button>
+                </div>
+
+                <div id="goal-form-container" class="form-card card-general hidden">
+                    <h2>Set a New Goal</h2>
+                    <form id="new-goal-form">
+                        <div class="form-group">
+                            <label for="goal-name">Goal Name</label>
+                            <input type="text" id="goal-name" placeholder="e.g., New Phone" required>
+                        </div>
+                        <div class="form-group-inline">
+                            <div class="form-group half-width">
+                                <label for="target-amount">Target Amount (₹)</label>
+                                <input type="number" id="target-amount" placeholder="e.g., 75000" min="1" required>
+                            </div>
+                            <div class="form-group half-width">
+                                <label for="target-date">Target Date (Optional)</label>
+                                <input type="date" id="target-date" title="Target Date">
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">Save Goal</button>
+                            <button type="button" id="cancel-form-btn" class="btn-secondary">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="goals-list" class="goals-grid">
+                    <p id="loading-message">Loading goals...</p>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div id="contribution-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn-modal">&times;</span>
+            <h2>Contribute to <span id="modal-goal-name" class="modal-highlight"></span></h2>
+            <form id="contribute-form">
+                <input type="hidden" id="contributing-goal-id">
+                
+                <div class="form-group">
+                    <label for="contribution-amount">Amount to Contribute (₹)</label>
+                    <input type="number" id="contribution-amount" placeholder="e.g., 5000" min="1" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="source-account">Source Account</label>
+                    <select id="source-account" name="source-account" required>
+                        <option value="" disabled selected>Select Source Account</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-primary modal-submit-btn">Add Funds</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../dashboard/dashboard.js"></script> 
+    <script src="saving-goals.js"></script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinTrakk - Budgeting</title>
+    <link rel="icon" href="../logo.png" type="image/png"> 
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="../dashboard/dashboard.css">
+    <link rel="stylesheet" href="budgeting.css">
+</head>
+<body class="dark-mode"> 
+    <div class="app-container" id="appContainer">
+
+        <nav id="mobileMenu" class="mobile-menu">
+            <button class="close-btn" id="closeMobileMenu"><i class="fas fa-times"></i></button>
+            <div class="menu-search-box">
+                 <input type="text" placeholder="Search menu items..." class="search-input">
+                 <i class="fas fa-search search-icon"></i>
+            </div>
+
+            <a href="../dashboard/dashboard.html" class="nav-link"><i class="fas fa-home"></i> Dashboard</a>
+            <a href="../transactions/transactions.html" class="nav-link"><i class="fas fa-exchange-alt"></i> Transactions</a>
+            <a href="../accounts/accounts.html" class="nav-link"><i class="fas fa-wallet"></i> Accounts</a>
+            <a href="../saving-goals/saving-goals.html" class="nav-link"><i class="fas fa-bullseye"></i> Saving Goals</a>
+            <a href="budgeting.html" class="nav-link active">Budgeting</a>
+            <a href="#" class="nav-link"><i class="fas fa-cog"></i> Settings</a>
+            
+            <a href="../auth/index.html" class="nav-link logout-mobile"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </nav>
+        
+        <div class="main-content-wrapper">
+            
+            <header id="main-header">
+                <div class="header-left">
+                    <div class="sticky-logo-title-area">
+                        <img id="customLogo" src="../new_full_logo.png" alt="FinTrakk Logo" class="main-header-logo"> 
+                    </div>
+                </div>
+
+                <nav class="desktop-nav">
+                    <a href="../dashboard/dashboard.html" class="nav-link">Dashboard</a>
+                    <a href="../transactions/transactions.html" class="nav-link">Transactions</a>
+                    <a href="../accounts/accounts.html" class="nav-link">Accounts</a>
+                    <a href="../saving-goals/saving-goals.html" class="nav-link">Saving Goals</a>
+                    <a href="budgeting.html" class="nav-link active">Budgeting</a>
+                </nav>
+
+                <div class="search-box desktop-search">
+                    <input type="text" placeholder="Search budgets, categories..." class="search-input">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+                <div class="header-right">
+                    <button id="openMobileMenu" class="icon-btn menu-toggle-mobile" title="Menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <button id="themeToggleBtn" class="icon-btn" title="Toggle Dark/Light Mode">
+                        <i class="fas fa-moon"></i> 
+                    </button>
+                    
+                    <div class="notification-area">
+                        <button id="notificationBtn" class="icon-btn" title="Notifications">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge" id="notificationBadge">3</span>
+                        </button>
+                        <div class="notification-dropdown" id="notificationDropdown">
+                            <h5>Notifications</h5>
+                            <a href="#" class="notification-item">Budget limit exceeded for Food!</a>
+                            <a href="#" class="notification-item">Monthly report ready.</a>
+                            <a href="#" class="notification-item">Large transaction detected.</a>
+                        </div>
+                    </div>
+
+                    <div class="user-profile">
+                        <div class="user-details">
+                            <p class="user-name">John Doe</p> 
+                            <span class="user-email">john@example.com</span>
+                        </div>
+                        <a href="../auth/index.html" class="logout-link desktop-logout" title="Logout"><i class="fas fa-sign-out-alt"></i></a>
+                    </div>
+                </div>
+            </header>
+            
+            <main id="main-content">
+                <div class="budgeting-header">
+                    <h1><i class="fas fa-chart-pie page-icon"></i> Monthly Budgeting</h1>
+                    <button class="btn-primary" id="setNewBudgetBtn">
+                        <i class="fas fa-plus-circle"></i> Set New Budget
+                    </button>
+                </div>
+                
+                <div class="budget-summary-bar card-general">
+                    <div class="summary-item">
+                        <p class="summary-label">Total Monthly Income</p>
+                        <h3 class="summary-value income">₹ 1,25,000</h3>
+                    </div>
+                    <div class="summary-item">
+                        <p class="summary-label">Total Budgeted</p>
+                        <h3 class="summary-value" id="totalBudgeted">₹ 75,000</h3>
+                    </div>
+                    <div class="summary-item">
+                        <p class="summary-label">Remaining Budget</p>
+                        <h3 class="summary-value income" id="remainingBudget">₹ 27,000</h3>
+                    </div>
+                    <div class="period-selector">
+                        <label for="periodFilter">View Period:</label>
+                        <select id="periodFilter" class="custom-select">
+                            <option value="current-month">Current Month</option>
+                            <option value="last-month">Last Month</option>
+                            <option value="next-month">Next Month</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="budgets-grid" id="budgetsGrid">
+                    
+                    <div class="budget-card card-general" data-category="food" data-limit="5000" data-spent="3500">
+                        <div class="card-header">
+                            <i class="fas fa-utensils category-icon"></i>
+                            <div class="card-actions">
+                                <button class="action-btn edit-budget-btn" title="Edit Limit"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn delete-budget-btn" title="Delete Budget"><i class="fas fa-trash-alt"></i></button>
+                            </div>
+                        </div>
+                        <h3 class="category-name">Food & Dining</h3>
+                        
+                        <div class="budget-details">
+                            <p>Limit: <span class="limit-value">₹ 5,000</span></p>
+                            <p>Spent: <span class="spent-value expense">₹ 3,500</span></p>
+                        </div>
+                        
+                        <div class="progress-info">
+                            <span class="progress-percentage">70% Used</span>
+                            <span class="progress-status">₹ 1,500 Left</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: 70%; background-color: var(--green-success);"></div>
+                        </div>
+                        
+                        <span class="budget-alert-tag safe">SAFE</span>
+                    </div>
+
+                    <div class="budget-card card-general" data-category="shopping" data-limit="10000" data-spent="9500">
+                        <div class="card-header">
+                            <i class="fas fa-shopping-bag category-icon"></i>
+                            <div class="card-actions">
+                                <button class="action-btn edit-budget-btn" title="Edit Limit"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn delete-budget-btn" title="Delete Budget"><i class="fas fa-trash-alt"></i></button>
+                            </div>
+                        </div>
+                        <h3 class="category-name">Shopping</h3>
+                        
+                        <div class="budget-details">
+                            <p>Limit: <span class="limit-value">₹ 10,000</span></p>
+                            <p>Spent: <span class="spent-value expense">₹ 9,500</span></p>
+                        </div>
+                        
+                        <div class="progress-info">
+                            <span class="progress-percentage">95% Used</span>
+                            <span class="progress-status alert">₹ 500 Left</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: 95%; background-color: orange;"></div>
+                        </div>
+                        
+                        <span class="budget-alert-tag alert-near">ALERT</span>
+                    </div>
+
+                    <div class="budget-card card-general" data-category="transport" data-limit="5000" data-spent="6500">
+                        <div class="card-header">
+                            <i class="fas fa-bus category-icon"></i>
+                            <div class="card-actions">
+                                <button class="action-btn edit-budget-btn" title="Edit Limit"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn delete-budget-btn" title="Delete Budget"><i class="fas fa-trash-alt"></i></button>
+                            </div>
+                        </div>
+                        <h3 class="category-name">Transport</h3>
+                        
+                        <div class="budget-details">
+                            <p>Limit: <span class="limit-value">₹ 5,000</span></p>
+                            <p>Spent: <span class="spent-value expense exceeded">₹ 6,500</span></p>
+                        </div>
+                        
+                        <div class="progress-info">
+                            <span class="progress-percentage">130% Used</span>
+                            <span class="progress-status exceeded">Over by ₹ 1,500</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: 100%; background-color: var(--red-danger);"></div>
+                        </div>
+                        
+                        <span class="budget-alert-tag exceeded">OVER BUDGET</span>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div id="budgetModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn-modal">&times;</span>
+            <h2 id="modalTitle">Set Category Budget</h2>
+            <form id="budgetForm">
+                
+                <div class="form-group">
+                    <label for="budgetCategory">Category</label>
+                    <select id="budgetCategory" name="budgetCategory" required>
+                        <option value="">Select Category</option>
+                        <option value="food">Food & Dining</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="bills">Bills</option>
+                        <option value="transport">Transport</option>
+                        <option value="entertainment">Entertainment</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="budgetLimit">Monthly Limit (₹)</label>
+                    <input type="number" id="budgetLimit" name="budgetLimit" placeholder="e.g., 5000" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="alertThreshold">Alert Me When Used (%):</label>
+                    <input type="number" id="alertThreshold" name="alertThreshold" placeholder="e.g., 80" min="50" max="99" value="90">
+                </div>
+
+                <button type="submit" class="btn-primary modal-submit-btn">Save Budget</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="budgeting.js"></script>
+</body>
+</html>

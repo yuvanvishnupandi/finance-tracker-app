@@ -1,0 +1,210 @@
+/* ========================================================= */
+/* === ACCOUNTS.CSS: Account Management Styles (ENHANCED EFFECTS) === */
+/* ========================================================= */
+
+/* --- Page Header --- */
+.accounts-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+.accounts-header h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 🛠️ FIX: Increase size of the Add New Account button */
+.accounts-header #addNewAccountBtn {
+    padding: 0.75rem 1.25rem; /* Increased vertical and horizontal padding */
+    font-size: 1rem; /* Increased font size */
+    font-weight: 600;
+    border-radius: 8px; /* Ensure rounded corners */
+    
+    /* Inherited effects/transitions */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transform: translateY(0);
+}
+
+/* Button Hover Effect */
+.accounts-header #addNewAccountBtn:hover {
+    box-shadow: 0 6px 15px rgba(13, 110, 253, 0.4);
+    transform: translateY(-2px) scale(1.01);
+}
+
+/* --- Summary Card (Enhanced Hover) --- */
+.balance-summary {
+    background: linear-gradient(135deg, var(--primary-blue), #00AEEF);
+    padding: 2rem;
+    border-radius: var(--squircle-radius);
+    margin-bottom: 2rem;
+    color: white;
+    box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3); 
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); 
+    cursor: default;
+}
+.balance-summary:hover {
+    transform: translateY(-8px) scale(1.005); 
+    box-shadow: 0 15px 40px rgba(0, 123, 255, 0.6); 
+}
+.summary-item { text-align: center; }
+.summary-label {
+    font-size: 1rem;
+    font-weight: 400;
+    opacity: 0.8;
+    margin-bottom: 5px;
+}
+.summary-value {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* --- Accounts Grid --- */
+.accounts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+/* --- Account Card Styles (Enhanced Interaction) --- */
+.account-card {
+    padding: 1.5rem;
+    border-radius: var(--squircle-radius);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+}
+.account-card:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2), 0 0 0 2px var(--primary-blue); 
+}
+
+/* Ripple effect on account icon (subtle motion) */
+.account-card:hover .account-icon {
+    transform: scale(1.1) rotate(-2deg);
+    opacity: 0.9;
+}
+.account-icon {
+    font-size: 2.5rem;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Action Button Group Hover Effect */
+.card-actions .action-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    padding: 5px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+.card-actions .action-btn:hover {
+    color: var(--primary-blue);
+    background-color: var(--primary-blue-light);
+    transform: scale(1.2);
+}
+.dark-mode .card-actions .action-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.account-name {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0 0 0.25rem 0;
+}
+.account-type {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin: 0 0 1rem 0;
+}
+.account-balance {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+}
+.account-balance.income { color: var(--green-success); }
+.account-balance.expense { color: var(--red-danger); }
+
+/* Link Hover Effect */
+.view-history-link {
+    text-decoration: none;
+    font-size: 0.9rem;
+    color: var(--primary-blue);
+    font-weight: 500;
+    transition: gap 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+.view-history-link:hover {
+    gap: 10px; 
+    text-decoration: underline;
+}
+
+/* --- Modal Styles (Interactive Inputs) --- */
+
+.modal.open { 
+    display: block; 
+    animation: fadeIn 0.3s;
+}
+.modal-content { 
+    animation: slideIn 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.close-btn-modal { 
+    transition: color 0.3s, transform 0.3s; 
+}
+.close-btn-modal:hover {
+    color: var(--red-danger);
+    transform: rotate(90deg) scale(1.1);
+}
+
+.form-group input, .form-group select { 
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.form-group input:focus, .form-group select:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.3);
+}
+
+/* Modal Submit Button Effect */
+.modal-submit-btn { 
+    transition: all 0.3s ease; 
+    background-color: var(--primary-blue);
+    color: white;
+    /* Ensure modal button has proper size */
+    padding: 0.8rem 1.25rem;
+    font-size: 1.1rem;
+}
+.modal-submit-btn:hover {
+    background-color: var(--primary-blue);
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0.8; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+
+/* --- Responsiveness --- */
+@media (max-width: 768px) {
+    .accounts-header { flex-direction: column; align-items: flex-start; gap: 15px; }
+    .balance-summary { padding: 1.5rem; }
+    .summary-value { font-size: 2.5rem; }
+}

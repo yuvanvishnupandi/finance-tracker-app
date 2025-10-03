@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinTrakk - Accounts</title>
+    <link rel="icon" href="../logo.png" type="image/png"> 
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="../dashboard/dashboard.css">
+    <link rel="stylesheet" href="accounts.css">
+</head>
+<body class="dark-mode"> 
+    <div class="app-container" id="appContainer">
+
+        <nav id="mobileMenu" class="mobile-menu">
+            <button class="close-btn" id="closeMobileMenu"><i class="fas fa-times"></i></button>
+            <div class="menu-search-box">
+                 <input type="text" placeholder="Search menu items..." class="search-input">
+                 <i class="fas fa-search search-icon"></i>
+            </div>
+
+            <a href="../dashboard/dashboard.html" class="nav-link"><i class="fas fa-home"></i> Dashboard</a>
+            <a href="../transactions/transactions.html" class="nav-link"><i class="fas fa-exchange-alt"></i> Transactions</a>
+            <a href="accounts.html" class="nav-link active"><i class="fas fa-wallet"></i> Accounts</a>
+            <a href="../saving-goals/saving-goals.html" class="nav-link"><i class="fas fa-bullseye"></i> Saving Goals</a>
+            <a href="../budgeting/budgeting.html" class="nav-link">Budgeting</a>
+            <a href="#" class="nav-link"><i class="fas fa-cog"></i> Settings</a>
+            
+            <a href="../auth/index.html" class="nav-link logout-mobile"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </nav>
+        
+        <div class="main-content-wrapper">
+            
+            <header id="main-header">
+                <div class="header-left">
+                    <div class="sticky-logo-title-area">
+                        <img id="customLogo" src="../new_full_logo.png" alt="FinTrakk Logo" class="main-header-logo"> 
+                    </div>
+                </div>
+
+                <nav class="desktop-nav">
+                    <a href="../dashboard/dashboard.html" class="nav-link">Dashboard</a>
+                    <a href="../transactions/transactions.html" class="nav-link">Transactions</a>
+                    <a href="accounts.html" class="nav-link active">Accounts</a>
+                    <a href="../saving-goals/saving-goals.html" class="nav-link">Saving Goals</a>
+                    <a href="../budgeting/budgeting.html" class="nav-link">Budgeting</a>
+                </nav>
+
+                <div class="search-box desktop-search">
+                    <input type="text" placeholder="Search accounts..." class="search-input">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+                <div class="header-right">
+                    <button id="openMobileMenu" class="icon-btn menu-toggle-mobile" title="Menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <button id="themeToggleBtn" class="icon-btn" title="Toggle Dark/Light Mode">
+                        <i class="fas fa-moon"></i> 
+                    </button>
+                    
+                    <div class="notification-area">
+                        <button id="notificationBtn" class="icon-btn" title="Notifications">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge" id="notificationBadge">3</span>
+                        </button>
+                        <div class="notification-dropdown" id="notificationDropdown">
+                            <h5>Notifications</h5>
+                            <a href="#" class="notification-item">Budget limit exceeded for Food!</a>
+                            <a href="#" class="notification-item">Monthly report ready.</a>
+                            <a href="#" class="notification-item">Large transaction detected.</a>
+                        </div>
+                    </div>
+
+                    <div class="user-profile">
+                        <div class="user-details">
+                            <p class="user-name">John Doe</p> 
+                            <span class="user-email">john@example.com</span>
+                        </div>
+                        <a href="../auth/index.html" class="logout-link desktop-logout" title="Logout"><i class="fas fa-sign-out-alt"></i></a>
+                    </div>
+                </div>
+            </header>
+            
+            <main id="main-content">
+                <div class="accounts-header">
+                    <h1><i class="fas fa-wallet page-icon"></i> Account Management</h1>
+                    <button class="btn-primary" id="addNewAccountBtn">
+                        <i class="fas fa-circle-plus"></i> Add New Account
+                    </button>
+                </div>
+
+                <div class="balance-summary card-general">
+                    <div class="summary-item">
+                        <p class="summary-label">Total Net Worth</p>
+                        <h2 class="summary-value income" id="totalNetWorth">₹ 1,50,450</h2>
+                    </div>
+                </div>
+
+                <div class="accounts-grid" id="accountsGrid">
+                    
+                    <div class="account-card card-general" data-type="savings" data-id="icici">
+                        <div class="card-header">
+                            <i class="fas fa-university account-icon" style="color: var(--green-success);"></i>
+                            <div class="card-actions">
+                                <button class="action-btn edit-account-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn delete-account-btn" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                            </div>
+                        </div>
+                        <h3 class="account-name">ICICI Savings</h3>
+                        <p class="account-type">Savings Account</p>
+                        <p class="account-balance income">₹ 1,20,000</p>
+                        <a href="#" class="view-history-link">View Transactions History <i class="fas fa-chevron-right"></i></a>
+                    </div>
+
+                    <div class="account-card card-general" data-type="credit" data-id="hdfc">
+                        <div class="card-header">
+                            <i class="fas fa-credit-card account-icon" style="color: var(--red-danger);"></i>
+                            <div class="card-actions">
+                                <button class="action-btn edit-account-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn delete-account-btn" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                            </div>
+                        </div>
+                        <h3 class="account-name">HDFC Credit Card</h3>
+                        <p class="account-type">Credit Card</p>
+                        <p class="account-balance expense">-₹ 5,000</p>
+                        <a href="#" class="view-history-link">View Transactions History <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    
+                    <div class="account-card card-general" data-type="cash" data-id="cash">
+                        <div class="card-header">
+                            <i class="fas fa-money-bill-wave account-icon" style="color: var(--primary-blue);"></i>
+                            <div class="card-actions">
+                                <button class="action-btn edit-account-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn delete-account-btn" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                            </div>
+                        </div>
+                        <h3 class="account-name">Cash Wallet</h3>
+                        <p class="account-type">Physical Cash</p>
+                        <p class="account-balance income">₹ 35,450</p>
+                        <a href="#" class="view-history-link">View Transactions History <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+
+                </main>
+        </div>
+    </div>
+
+    <div id="accountModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn-modal">&times;</span>
+            <h2 id="modalTitle">Add New Account</h2>
+            <form id="accountForm">
+                
+                <div class="form-group">
+                    <label for="accountName">Account Name</label>
+                    <input type="text" id="accountName" name="accountName" placeholder="e.g., HDFC Credit Card" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="accountType">Account Type</label>
+                    <select id="accountType" name="accountType" required>
+                        <option value="">Select Type</option>
+                        <option value="savings">Savings Account (Asset)</option>
+                        <option value="checking">Checking Account (Asset)</option>
+                        <option value="credit">Credit Card (Liability)</option>
+                        <option value="cash">Cash (Asset)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="initialBalance">Initial/Current Balance (₹)</label>
+                    <input type="number" id="initialBalance" name="initialBalance" placeholder="0.00" required>
+                </div>
+
+                <button type="submit" class="btn-primary modal-submit-btn">Save Account</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- <script src="../dashboard/dashboard.js"></script>  -->
+    <script src="accounts.js"></script>
+</body>
+</html>

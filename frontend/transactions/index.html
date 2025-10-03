@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinTrakk - Login & Register</title>
+     <link rel="icon" href="logo.png" type="image/png"> <!-- Favicon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1yH2q55Fz78k4Yq7o4vQ/t6k0gO3rC/B6c8A+P5D6k8B+P7B/b9f4V0a9E2q/vFw+A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+ <header class="auth-header">
+        <img src="new_full_logo.png" alt="FinTrakk Logo" class="auth-logo">
+    </header>
+<body>
+    <div class="container">
+        <div class="forms-container">
+            <div class="signin-signup">
+                <form action="#" class="sign-in-form">
+                    <h2 class="title">Sign in</h2>
+                    
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="Username" id="signInUsername" />
+                    </div>
+                    <p class="error-message username-error"></p>
+
+                    <div class="input-field password-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Password" id="signInPassword" />
+                        <span class="password-toggle-wrapper">
+                            <i class="far fa-eye-slash toggle-password"></i>
+                            <div class="password-tooltip">Show password</div>
+                        </span>
+                    </div>
+                    <p class="error-message password-error"></p>
+
+                    <input type="submit" value="Login" class="btn solid" id="signInBtn" />
+                    
+                   
+                </form>
+
+                <form action="#" class="sign-up-form">
+                    <h2 class="title">Sign up</h2>
+                    
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="Username" id="signUpUsername" />
+                    </div>
+                    <p class="error-message username-error"></p>
+
+                    <div class="input-field">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" placeholder="Email" id="signUpEmail" />
+                    </div>
+                    <p class="error-message email-error"></p>
+
+                    <div class="input-field password-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Password" id="signUpPassword" />
+                        <span class="password-toggle-wrapper">
+                            <i class="far fa-eye-slash toggle-password"></i>
+                            <div class="password-tooltip">Show password</div>
+                        </span>
+                    </div>
+                    <p class="error-message password-error"></p>
+                    
+                    <div class="input-field password-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Confirm Password" id="signUpConfirmPassword" />
+                        <span class="password-toggle-wrapper">
+                            <i class="far fa-eye-slash toggle-password"></i>
+                            <div class="password-tooltip">Show password</div>
+                        </span>
+                    </div>
+                    <p class="error-message confirm-password-error"></p>
+
+                    <input type="submit" class="btn" value="Sign up" id="signUpBtn" />
+                </form>
+            </div>
+        </div>
+
+        <div class="panels-container">
+            <div class="panel left-panel">
+                <div class="content">
+                    <h3>New to FinTrakk ?</h3>
+                    <p>
+                        Join us today and take control of your finances. It's free!
+                    </p>
+                    <button class="btn transparent" id="sign-up-btn">
+                        Sign up
+                    </button>
+                </div>
+                <svg class="image" viewBox="0 0 574 547" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M287 547C445.501 547 574 424.571 574 273.5C574 122.429 445.501 0 287 0C128.499 0 0 122.429 0 273.5C0 424.571 128.499 547 287 547Z" fill="#8C9EFF"/>
+                    <path d="M287 547C445.501 547 574 424.571 574 273.5C574 122.429 445.501 0 287 0C128.499 0 0 122.429 0 273.5C0 424.571 128.499 547 287 547Z" fill="url(#paint0_linear)"/>
+                    <path d="M216.633 464.229C199.333 464.229 184.222 479.339 184.222 496.639C184.222 513.939 199.333 529.05 216.633 529.05C233.934 529.05 249.044 513.939 249.044 496.639C249.044 479.339 233.934 464.229 216.633 464.229Z" fill="#0C0058"/>
+                    <path d="M216.633 464.229C199.333 464.229 184.222 479.339 184.222 496.639C184.222 513.939 199.333 529.05 216.633 529.05C233.934 529.05 249.044 513.939 249.044 496.639C249.044 479.339 233.934 464.229 216.633 464.229Z" fill="url(#paint1_linear)"/>
+                    <path d="M495.968 186.299L445.823 236.444L413.411 204.032L397.206 220.237L445.823 268.854L512.174 202.503L495.968 186.299Z" fill="#0C0058"/>
+                    <path d="M495.968 186.299L445.823 236.444L413.411 204.032L397.206 220.237L445.823 268.854L512.174 202.503L495.968 186.299Z" fill="url(#paint2_linear)"/>
+                    <path d="M249.044 496.639H184.222V220.237H249.044V496.639Z" fill="#C4C4C4"/>
+                    <path d="M495.968 153.888H347.06V285.059H495.968V153.888Z" fill="#C4C4C4"/>
+                    <path d="M249.044 496.639H184.222V220.237H249.044V496.639Z" fill="url(#paint3_linear)"/>
+                    <path d="M495.968 153.888H347.06V285.059H495.968V153.888Z" fill="url(#paint4_linear)"/>
+                    <path d="M129.54 36.3065L79.3952 86.4516L46.9839 54.0403L30.7782 70.246L79.3952 118.863L145.746 52.5121L129.54 36.3065Z" fill="#0C0058"/>
+                    <path d="M129.54 36.3065L79.3952 86.4516L46.9839 54.0403L30.7782 70.246L79.3952 118.863L145.746 52.5121L129.54 36.3065Z" fill="url(#paint5_linear)"/>
+                    <path d="M129.54 3.89516H-19.3669V135.066H129.54V3.89516Z" fill="url(#paint6_linear)"/>
+                    <defs>
+                    <linearGradient id="paint0_linear" x1="287" y1="0" x2="287" y2="547" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#8C9EFF"/>
+                    <stop offset="1" stop-color="#413C98"/>
+                    </linearGradient>
+                    <linearGradient id="paint1_linear" x1="216.633" y1="464.229" x2="216.633" y2="529.05" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#FFD68D"/>
+                    <stop offset="1" stop-color="#F2A200"/>
+                    </linearGradient>
+                    <linearGradient id="paint2_linear" x1="454.69" y1="186.299" x2="454.69" y2="268.854" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="white"/>
+                    <stop offset="1" stop-color="#D1D1D1"/>
+                    </linearGradient>
+                    <linearGradient id="paint3_linear" x1="216.633" y1="220.237" x2="216.633" y2="496.639" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="white"/>
+                    <stop offset="1" stop-color="#D1D1D1"/>
+                    </linearGradient>
+                    <linearGradient id="paint4_linear" x1="421.514" y1="153.888" x2="421.514" y2="285.059" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="white"/>
+                    <stop offset="1" stop-color="#D1D1D1"/>
+                    </linearGradient>
+                    <linearGradient id="paint5_linear" x1="88.2621" y1="36.3065" x2="88.2621" y2="118.863" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#8CE4FF"/>
+                    <stop offset="1" stop-color="#00A2D3"/>
+                    </linearGradient>
+                    <linearGradient id="paint6_linear" x1="55.0865" y1="3.89516" x2="55.0865" y2="136.569" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#8CE4FF"/>
+                    <stop offset="1" stop-color="#00A2D3"/>
+                    </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <div class="panel right-panel">
+                <div class="content">
+                    <h3>Welcome Back!</h3>
+                    <p>
+                        Sign in to access your dashboard and continue tracking your finances.
+                    </p>
+                    <button class="btn transparent" id="sign-in-btn">
+                        Sign in
+                    </button>
+                </div>
+                 <svg class="image" viewBox="0 0 520 549" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M260 549C403.581 549 520 426.11 520 274.5C520 122.89 403.581 0 260 0C116.419 0 0 122.89 0 274.5C0 426.11 116.419 549 260 549Z" fill="#8C9EFF"/>
+                    <path d="M260 549C403.581 549 520 426.11 520 274.5C520 122.89 403.581 0 260 0C116.419 0 0 122.89 0 274.5C0 426.11 116.419 549 260 549Z" fill="url(#paint0_linear_2)"/>
+                    <path d="M192.933 465.732C175.633 465.732 160.522 480.842 160.522 498.142C160.522 515.442 175.633 530.553 192.933 530.553C210.234 530.553 225.344 515.442 225.344 498.142C225.344 480.842 210.234 465.732 192.933 465.732Z" fill="#0C0058"/>
+                    <path d="M192.933 465.732C175.633 465.732 160.522 480.842 160.522 498.142C160.522 515.442 175.633 530.553 192.933 530.553C210.234 530.553 225.344 515.442 225.344 498.142C225.344 480.842 210.234 465.732 192.933 465.732Z" fill="url(#paint1_linear_2)"/>
+                    <path d="M472.268 187.802L422.123 237.947L389.711 205.535L373.506 221.74L422.123 270.357L488.474 204.006L472.268 187.802Z" fill="#0C0058"/>
+                    <path d="M472.268 187.802L422.123 237.947L389.711 205.535L373.506 221.74L422.123 270.357L488.474 204.006L472.268 187.802Z" fill="url(#paint2_linear_2)"/>
+                    <path d="M225.344 498.142H160.522V221.74H225.344V498.142Z" fill="#C4C4C4"/>
+                    <path d="M472.268 155.391H323.36V286.562H472.268V155.391Z" fill="#C4C4C4"/>
+                    <path d="M225.344 498.142H160.522V221.74H225.344V498.142Z" fill="url(#paint3_linear_2)"/>
+                    <path d="M472.268 155.391H323.36V286.562H472.268V155.391Z" fill="url(#paint4_linear_2)"/>
+                    <path d="M105.84 37.8096L55.6952 87.9547L23.2839 55.5434L7.07823 71.7491L55.6952 120.366L122.046 54.0152L105.84 37.8096Z" fill="#0C0058"/>
+                    <path d="M105.84 37.8096L55.6952 87.9547L23.2839 55.5434L7.07823 71.7491L55.6952 120.366L122.046 54.0152L105.84 37.8096Z" fill="url(#paint5_linear_2)"/>
+                    <path d="M105.84 5.39828H-43.0669V136.569H105.84V5.39828Z" fill="url(#paint6_linear_2)"/>
+                    <defs>
+                    <linearGradient id="paint0_linear_2" x1="260" y1="0" x2="260" y2="549" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#8C9EFF"/>
+                    <stop offset="1" stop-color="#413C98"/>
+                    </linearGradient>
+                    <linearGradient id="paint1_linear_2" x1="192.933" y1="465.732" x2="192.933" y2="530.553" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#FFD68D"/>
+                    <stop offset="1" stop-color="#F2A200"/>
+                    </linearGradient>
+                    <linearGradient id="paint2_linear_2" x1="430.99" y1="187.802" x2="430.99" y2="270.357" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="white"/>
+                    <stop offset="1" stop-color="#D1D1D1"/>
+                    </linearGradient>
+                    <linearGradient id="paint3_linear_2" x1="192.933" y1="221.74" x2="192.933" y2="498.142" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="white"/>
+                    <stop offset="1" stop-color="#D1D1D1"/>
+                    </linearGradient>
+                    <linearGradient id="paint4_linear_2" x1="397.814" y1="155.391" x2="397.814" y2="286.562" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="white"/>
+                    <stop offset="1" stop-color="#D1D1D1"/>
+                    </linearGradient>
+                    <linearGradient id="paint5_linear_2" x1="64.5621" y1="37.8096" x2="64.5621" y2="120.366" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#8CE4FF"/>
+                    <stop offset="1" stop-color="#00A2D3"/>
+                    </linearGradient>
+                    <linearGradient id="paint6_linear_2" x1="31.3865" y1="5.39828" x2="31.3865" y2="136.569" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#8CE4FF"/>
+                    <stop offset="1" stop-color="#00A2D3"/>
+                    </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+    </div>
+    
+    <button id="theme-switch" aria-label="Toggle dark mode">
+        <i class="fas fa-moon moon-icon"></i>
+        <i class="fas fa-sun sun-icon"></i>
+    </button>
+
+    <script src="signup.js"></script>
+    <script src="darkmode.js"></script>
+    <script src="formFeatures.js"></script>
+</body>
+</html>

@@ -16,15 +16,12 @@
     margin: 0 0.5rem; 
     background-color: transparent !important;
 }
-/* In frontend/dashboard/dashboard.css (around line 97) */
-
-/* Search Bar (Desktop) */
 .search-box.desktop-search { 
-    /* Reduced width to ensure icons have space */
-    width: 200px; 
-    /* Add margin to separate it from the icons on the right */
-    margin-right: 1rem; 
+    /* NEW: Target the desktop search explicitly for better control */
+    width: 200px; /* Reduced width to free up space */
     height: 38px; 
+    /* Add margin to further separate it from the icons */
+    margin-right: 1rem; 
 }
 .header-right {
     gap: 5px; 
@@ -402,7 +399,7 @@
 
 /* --- RESPONSIVENESS FIXES (Kept the same) --- */
 @media (max-width: 1024px) {
-   .search-box.desktop-search { 
+    .search-box.desktop-search { 
     /* NEW: Target the desktop search explicitly for better control */
     width: 200px; /* Reduced width to free up space */
     height: 38px; 

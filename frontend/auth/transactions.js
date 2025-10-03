@@ -11,9 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const transactionTableBody = document.querySelector('#transactionTable tbody');
     const filterControls = document.querySelectorAll('.filter-select, #transactionSearchInput');
     const sortDateBtn = document.getElementById('sortDateBtn');
-    
-    // 👇 NEW LINE: Reference for all logout links (desktop and mobile)
     const logoutLinks = document.querySelectorAll('.logout-link, .logout-mobile'); 
+    
+    
 
     // Master data source array, initialized by parsing existing table rows
     let transactionData = [];
@@ -349,9 +349,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial load
     initializeTransactions();
-
-    // 👇 NEW BLOCK: Logout Handler for Transactions Page
-    if (logoutLinks.length > 0) {
+     if (logoutLinks.length > 0) {
         logoutLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault(); 
@@ -363,11 +361,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 console.log('User logged out. Redirecting to login page.');
                 
-                // Redirect to the login page using the correct relative path
-                // This will prevent the "Site can't be reached" error by not hardcoding the port.
+                // **THIS LINE IS THE FIX**
                 window.location.href = '../auth/index.html'; 
             });
         });
     }
     
-});
+}); // End of DOMContentLoaded

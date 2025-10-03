@@ -238,13 +238,13 @@ desktopNavLinks.forEach(link => {
         if (linkText.includes('Dashboard')) {
             targetPage = 'dashboard.html';
         } else if (linkText.includes('Transactions')) {
-            targetPage = '../transactions/transactions.html';
+            targetPage = 'transactions.html';
         } else if (linkText.includes('Accounts')) {
-            targetPage = '../accounts/accounts.html';
+            targetPage = 'accounts.html';
         } else if (linkText.includes('Saving Goals')) {
-            targetPage = '../saving-goals/saving-goals.html';
+            targetPage = 'saving-goals.html';
         } else if (linkText.includes('Budgeting')) {
-            targetPage = '../budgeting/budgeting.html';
+            targetPage = 'budgeting.html';
         } else {
             return; 
         }
@@ -316,8 +316,8 @@ if (logoutLink) {
         localStorage.removeItem('theme'); 
         console.log('User logged out. Redirecting to login page.');
         
-        // ✅ CORRECT LINE: Use the relative path to the login page (index.html is one level up and into 'auth').
-        window.location.href = '../auth/index.html'; 
+ 
+        window.location.href = '../auth/index.html';
     });
 } else {
     
