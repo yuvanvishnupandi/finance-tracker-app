@@ -4,40 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FinTrakk - Accounts</title>
-    <link rel="icon" href="../logo.png" type="image/png"> 
-    
+    <link rel="icon" href="../logo.png" type="image/png">
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    
+
     <link rel="stylesheet" href="../dashboard/dashboard.css">
     <link rel="stylesheet" href="accounts.css">
 </head>
-<body class="dark-mode"> 
+<body class="dark-mode">
     <div class="app-container" id="appContainer">
 
         <nav id="mobileMenu" class="mobile-menu">
             <button class="close-btn" id="closeMobileMenu"><i class="fas fa-times"></i></button>
-            <div class="menu-search-box">
+            <!-- <div class="menu-search-box">
                  <input type="text" placeholder="Search menu items..." class="search-input">
                  <i class="fas fa-search search-icon"></i>
-            </div>
+            </div> -->
 
             <a href="../dashboard/dashboard.html" class="nav-link"><i class="fas fa-home"></i> Dashboard</a>
             <a href="../transactions/transactions.html" class="nav-link"><i class="fas fa-exchange-alt"></i> Transactions</a>
             <a href="accounts.html" class="nav-link active"><i class="fas fa-wallet"></i> Accounts</a>
             <a href="../saving-goals/saving-goals.html" class="nav-link"><i class="fas fa-bullseye"></i> Saving Goals</a>
-            <a href="../budgeting/budgeting.html" class="nav-link">Budgeting</a>
-            <a href="#" class="nav-link"><i class="fas fa-cog"></i> Settings</a>
-            
+            <a href="../budgeting/budgeting.html" class="nav-link"><i class="fas fa-tasks"></i>Budgeting</a>
+           
+
             <a href="../auth/index.html" class="nav-link logout-mobile"><i class="fas fa-sign-out-alt"></i> Logout</a>
         </nav>
-        
+
         <div class="main-content-wrapper">
-            
+
             <header id="main-header">
                 <div class="header-left">
                     <div class="sticky-logo-title-area">
-                        <img id="customLogo" src="../new_full_logo.png" alt="FinTrakk Logo" class="main-header-logo"> 
+                        <img id="customLogo" src="../new_full_logo.png" alt="FinTrakk Logo" class="main-header-logo">
                     </div>
                 </div>
 
@@ -59,9 +59,9 @@
                     </button>
 
                     <button id="themeToggleBtn" class="icon-btn" title="Toggle Dark/Light Mode">
-                        <i class="fas fa-moon"></i> 
+                        <i class="fas fa-moon"></i>
                     </button>
-                    
+
                     <div class="notification-area">
                         <button id="notificationBtn" class="icon-btn" title="Notifications">
                             <i class="fas fa-bell"></i>
@@ -77,14 +77,14 @@
 
                     <div class="user-profile">
                         <div class="user-details">
-                            <p class="user-name">John Doe</p> 
+                            <p class="user-name">John Doe</p>
                             <span class="user-email">john@example.com</span>
                         </div>
                         <a href="../auth/index.html" class="logout-link desktop-logout" title="Logout"><i class="fas fa-sign-out-alt"></i></a>
                     </div>
                 </div>
             </header>
-            
+
             <main id="main-content">
                 <div class="accounts-header">
                     <h1><i class="fas fa-wallet page-icon"></i> Account Management</h1>
@@ -101,7 +101,7 @@
                 </div>
 
                 <div class="accounts-grid" id="accountsGrid">
-                    
+
                     <div class="account-card card-general" data-type="savings" data-id="icici">
                         <div class="card-header">
                             <i class="fas fa-university account-icon" style="color: var(--green-success);"></i>
@@ -129,7 +129,7 @@
                         <p class="account-balance expense">-₹ 5,000</p>
                         <a href="#" class="view-history-link">View Transactions History <i class="fas fa-chevron-right"></i></a>
                     </div>
-                    
+
                     <div class="account-card card-general" data-type="cash" data-id="cash">
                         <div class="card-header">
                             <i class="fas fa-money-bill-wave account-icon" style="color: var(--primary-blue);"></i>
@@ -154,12 +154,12 @@
             <span class="close-btn-modal">&times;</span>
             <h2 id="modalTitle">Add New Account</h2>
             <form id="accountForm">
-                
+
                 <div class="form-group">
                     <label for="accountName">Account Name</label>
                     <input type="text" id="accountName" name="accountName" placeholder="e.g., HDFC Credit Card" required>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="accountType">Account Type</label>
                     <select id="accountType" name="accountType" required>
@@ -180,8 +180,7 @@
             </form>
         </div>
     </div>
-    
-    <!-- <script src="../dashboard/dashboard.js"></script>  -->
+
     <script src="accounts.js"></script>
 </body>
 </html>

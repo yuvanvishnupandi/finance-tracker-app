@@ -13,7 +13,7 @@ const mobileMenu = document.getElementById('mobileMenu');
 const incomeVsExpenseChartElement = document.getElementById('incomeVsExpenseChart');
 const expenseBreakdownChartElement = document.getElementById('expenseBreakdownChart');
 
-const searchInput = document.getElementById('searchInput');
+// REMOVED: const searchInput = document.getElementById('searchInput');
 
 const viewAllLinks = document.querySelectorAll('.view-all-link');
 const manageLinks = document.querySelectorAll('.manage-link');
@@ -25,7 +25,7 @@ const filterableItems = document.querySelectorAll('.filterable-item');
 
 
 const desktopNavLinks = document.querySelectorAll('.desktop-nav .nav-link');
-
+const allNavLinks = document.querySelectorAll('.desktop-nav .nav-link, #mobileMenu .nav-link');
 
 
 const chartColors = {
@@ -230,7 +230,7 @@ document.querySelectorAll('.custom-select').forEach(select => {
 });
 
 
-desktopNavLinks.forEach(link => {
+allNavLinks.forEach(link => {
     link.addEventListener('click', (e) => {
         const linkText = link.textContent.trim();
         let targetPage = '';
@@ -252,6 +252,11 @@ desktopNavLinks.forEach(link => {
         e.preventDefault(); 
         console.log(`Navigating to: ${targetPage}`);
         window.location.href = targetPage;
+
+        // If it's a mobile menu link, close the menu after click
+        if (link.closest('#mobileMenu')) {
+            mobileMenu.classList.remove('open');
+        }
     });
 });
 
@@ -284,30 +289,9 @@ detailLinks.forEach(link => {
 });
 
 
-const mobileMenuItems = document.querySelectorAll('#mobileMenu .nav-link');
+// REMOVED: mobileMenuItems definition
 
-if (searchInput) {
-    searchInput.addEventListener('input', (event) => {
-        const searchTerm = event.target.value.toLowerCase().trim();
-
-        if (event.target.closest('#mobileMenu')) {
-             mobileMenuItems.forEach(item => {
-                const itemText = item.textContent.toLowerCase();
-
-                if (itemText.includes(searchTerm)) {
-                    item.style.display = 'flex'; 
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        }
-    });
-} else {
-    console.warn("Search input with ID 'searchInput' was not found. Search functionality is disabled.");
-}
-
-
-
+// REMOVED: Search input event listener logic
 
 if (logoutLink) {
     logoutLink.addEventListener('click', (e) => {

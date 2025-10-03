@@ -190,13 +190,35 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+    
+    // --- Handle "View Transactions History" Link Click (NEW BLOCK) ---
+    // Uses event delegation on the accounts grid to catch clicks on any link
+    if (accountsGrid) {
+        accountsGrid.addEventListener('click', (e) => {
+            const historyLink = e.target.closest('.view-history-link');
+            if (historyLink) {
+                e.preventDefault(); 
+                
+                // You can get the accountId here if needed for filtering later
+                // const accountCard = historyLink.closest('.account-card');
+                // const accountId = accountCard ? accountCard.getAttribute('data-id') : 'all';
+                
+                console.log(`Redirecting to Transactions page.`);
+
+                // Redirect to the main Transactions page
+                // Correct relative path: one level up (from accounts/) into transactions/
+                window.location.href = '../transactions/transactions.html'; 
+            }
+        });
+    }
+    // -------------------------------------------------------------------
 
 
     // -------------------------------------------------------------------------
     // --- UX/ACCESSIBILITY HANDLERS (MOBILE, THEME, NOTIFICATION) ---
     // -------------------------------------------------------------------------
     
-    // **FIX: Dark Mode (Self-Contained and Functional)**
+    // FIX: Dark Mode (Self-Contained and Functional)
     if (themeToggleBtn) {
         const savedTheme = localStorage.getItem('theme');
         const isDarkModeActive = savedTheme === 'dark-mode';
@@ -222,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // **FIX: Mobile Menu Toggle**
+    // FIX: Mobile Menu Toggle
     function toggleMobileMenu() {
         if (mobileMenu) mobileMenu.classList.toggle('open');
     }
@@ -240,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // **FIX: Notification Button**
+    // FIX: Notification Button
     if (notificationBtn && notificationDropdown && notificationBadge) {
         notificationBtn.addEventListener('click', (event) => {
             notificationDropdown.classList.toggle('active');

@@ -421,3 +421,8 @@
         gap: 10px;
     }
 }
+.desktop-nav .nav-link:hover {
+    color: #ffffff; /* Sets text color to white on hover */
+    background-color: var(--primary-blue); /* This is your existing blue background */
+    border-radius: 8px; /* This will keep the rounded shape */
+}

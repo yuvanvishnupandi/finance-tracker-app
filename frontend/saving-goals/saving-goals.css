@@ -2,6 +2,115 @@
 /* === SAVING-GOALS.CSS: Styles for Savings Goals Page --- FINAL REVISION (Button Size Increase) === */
 /* ========================================================= */
 
+/* --- Header Styles (Refactored for Theming and Active Link) --- */
+#main-header {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--text-primary);
+    border-radius: 40px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 85%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 10px 25px;
+    position: sticky;
+    top: 20px;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* FIX: Creates a "light theme island" for the header in dark mode.
+   All child elements will now automatically use light theme colors. */
+.dark-mode #main-header {
+    --bg-surface: var(--bg-surface-light);
+    --text-primary: var(--text-primary-light);
+    --text-secondary: var(--text-secondary-light);
+    --border-color: var(--border-light);
+    --bg-main: var(--bg-main-light);
+    border: 1px solid #c0c0c0; /* Softer border for contrast */
+}
+
+.header-left { padding-right: 0; }
+.desktop-nav {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+.desktop-nav .nav-link {
+    color: var(--text-secondary);
+    padding: 10px 15px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-radius: 30px;
+    white-space: nowrap; /* Prevents text like "Saving Goals" from wrapping */
+}
+.desktop-nav .nav-link:hover {
+    color: var(--primary-blue);
+    background-color: var(--primary-blue-light);
+}
+
+.desktop-nav .nav-link.active {
+    color: white;
+    background-color: var(--primary-blue);
+    font-weight: 600;
+    border-radius: 30px;
+    padding: 10px 15px;
+}
+.desktop-nav .nav-link.active:hover {
+    color: white;
+    background-color: var(--primary-blue);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+/* --- End Header Styles --- */
+
+
+/* --- Mobile View Adjustments --- */
+@media (max-width: 1024px) {
+    .desktop-nav,
+    .user-profile {
+        display: none;
+    }
+    #main-header {
+        width: 90%;
+        padding: 8px 15px;
+        gap: 0;
+    }
+    .header-right {
+        gap: 5px;
+        padding-left: 0;
+        margin-left: 0;
+    }
+    .goals-header-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    .goals-header-bar .btn-primary {
+        width: 100%;
+    }
+    .goals-grid {
+        grid-template-columns: 1fr;
+    }
+    .form-group-inline {
+        flex-direction: column;
+        gap: 0;
+    }
+    .form-actions button {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+
 /* --- Page Header/Action Bar & Button Fix --- */
 .goals-header-bar {
     display: flex;
@@ -18,22 +127,16 @@
     align-items: center;
     gap: 10px;
 }
-
-/* FIX: Button Size Increase and Styling */
 #add-goal-btn {
-    /* Base style for btn-primary from dashboard.css */
-    /* Increased size */
-    padding: 12px 20px; /* Increased padding */
-    font-size: 1.05rem; /* Slightly larger text */
-    
+    padding: 12px 20px;
+    font-size: 1.05rem;
     transition: all 0.3s ease;
     transform: translateY(0);
 }
 #add-goal-btn:hover {
-    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.5); /* Blue shadow on hover */
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.5);
     transform: translateY(-2px);
 }
-
 
 /* --- Form Card Styles --- */
 .form-card {
@@ -43,11 +146,6 @@
     border: 1px solid var(--border-color);
     box-shadow: var(--shadow-md);
     margin-bottom: 25px;
-    transition: all 0.3s ease;
-}
-.form-card:hover {
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-    transform: scale(1.005);
 }
 .form-card h2 {
     color: var(--primary-blue);
@@ -55,24 +153,22 @@
     font-size: 1.4rem;
     margin-bottom: 1.5rem;
 }
-
-/* Form Layout */
 .form-group-inline {
     display: flex;
     gap: 1.5rem;
-    margin-bottom: 1rem; 
+    margin-bottom: 1rem;
 }
 .form-group-inline .half-width {
     flex: 1;
 }
-.form-card input[type="text"], 
-.form-card input[type="number"], 
+.form-card input[type="text"],
+.form-card input[type="number"],
 .form-card input[type="date"] {
-    width: 100%; 
+    width: 100%;
     padding: 0.75rem 1rem;
     border: 1px solid var(--border-color);
     border-radius: var(--squircle-radius);
-    background-color: var(--bg-main); 
+    background-color: var(--bg-main);
     color: var(--text-primary);
     transition: all 0.3s ease;
 }
@@ -99,7 +195,6 @@
     background-color: #5a6268;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
-
 .hidden {
     display: none !important;
 }
@@ -112,24 +207,21 @@
     gap: 25px;
 }
 
-/* --- Goal Card Styles & Hover Effect --- */
+/* --- Goal Card Styles --- */
 .goal-card {
     background-color: var(--bg-surface);
     padding: 20px;
     border-radius: var(--squircle-radius);
-    box-shadow: var(--shadow-md); 
+    box-shadow: var(--shadow-md);
     border-left: 5px solid var(--primary-blue);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     border: 1px solid var(--border-color);
 }
-/* FULL PAGE HOVER EFFECT */
 .goal-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
     border-color: var(--primary-blue);
-    cursor: pointer;
 }
-
 .goal-card h3 {
     margin-top: 0;
     color: var(--text-primary);
@@ -138,31 +230,25 @@
     border-bottom: 1px dashed var(--border-color);
     padding-bottom: 10px;
 }
-
-/* Card Content Alignment Fixes (Flexbox) */
 .goal-details p {
     margin: 6px 0;
     font-size: 0.95em;
     color: var(--text-primary);
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
     align-items: baseline;
     font-weight: 400;
 }
-
 .goal-details p strong {
     font-weight: 500;
     color: var(--text-secondary);
-    white-space: nowrap; 
-    padding-right: 10px; 
+    white-space: nowrap;
+    padding-right: 10px;
 }
 .goal-details p span {
     font-weight: 600;
     text-align: right;
 }
-
-
-/* Highlight for saved/remaining amounts */
 .amount-saved { color: var(--green-success); }
 .amount-remaining { color: var(--red-danger); }
 
@@ -175,7 +261,6 @@
     overflow: hidden;
     box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
 }
-
 .progress-bar {
     height: 100%;
     background-color: var(--primary-blue);
@@ -186,15 +271,9 @@
     transition: width 0.6s ease;
     white-space: nowrap;
 }
-
 .status-completed {
     background-color: var(--green-success);
 }
-.status-completed:hover {
-    background-color: var(--green-success);
-}
-
-/* Contribute Button */
 .contribute-btn {
     margin-top: 15px;
     width: 100%;
@@ -213,80 +292,74 @@
     transform: none;
 }
 
-/* --- Modal Styles (Consistent with transactions/accounts) --- */
-.modal { 
-    display: none; 
-    position: fixed; 
-    z-index: 2000; 
-    left: 0; 
-    top: 0; 
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgba(0, 0, 0, 0.75); 
-    padding-top: 50px; 
+/* --- Modal Styles --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
 }
-.modal.open { 
-    display: block; 
+.modal.open {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.modal-content { 
-    background-color: var(--bg-surface); 
-    margin: 5% auto; 
-    padding: 2rem; 
+.modal-content {
+    background-color: var(--bg-surface);
+    padding: 2rem;
     border-radius: 12px;
-    width: 90%; 
-    max-width: 450px; 
-    position: relative; 
+    width: 90%;
+    max-width: 450px;
+    position: relative;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     border: 1px solid var(--border-color);
 }
-.close-btn-modal { 
-    color: var(--text-secondary); 
-    position: absolute; 
-    top: 1rem; 
-    right: 1.5rem; 
-    font-size: 28px; 
-    font-weight: bold; 
+.close-btn-modal {
+    color: var(--text-secondary);
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 28px;
+    font-weight: bold;
     cursor: pointer;
 }
-.modal-content h2 { 
-    color: var(--primary-blue); 
-    margin-top: 0; 
-    margin-bottom: 1.5rem; 
+.modal-content h2 {
+    color: var(--primary-blue);
+    margin-top: 0;
+    margin-bottom: 1.5rem;
     font-size: 1.6rem;
-    border-bottom: 1px solid var(--border-color); 
-    padding-bottom: 10px; 
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
 }
 .modal-highlight {
     color: var(--primary-blue);
     font-weight: 600;
 }
-.modal-submit-btn { width: 100%; margin-top: 1.5rem; }
-.form-group label { font-weight: 500; margin-bottom: 0.5rem; color: var(--text-primary); font-size: 0.95rem; display: block; }
-.form-group input, .form-group select { 
-    padding: 0.75rem 1rem; border: 1px solid var(--border-color); border-radius: var(--squircle-radius); 
-    background-color: var(--bg-main); color: var(--text-primary); width: 100%; 
+.modal-submit-btn {
+    width: 100%;
+    margin-top: 1.5rem;
 }
-
-/* --- Responsiveness --- */
-@media (max-width: 768px) {
-    .goals-header-bar { 
-        flex-direction: column; 
-        align-items: flex-start; 
-        gap: 15px; 
-    }
-    .goals-header-bar .btn-primary {
-        width: 100%;
-    }
-    .goals-grid {
-        grid-template-columns: 1fr;
-    }
-    .form-group-inline {
-        flex-direction: column;
-        gap: 0;
-    }
-    .form-actions button {
-        width: 100%;
-        margin-top: 10px;
-    }
+.form-group label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    display: block;
+}
+.form-group input, .form-group select {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--squircle-radius);
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    width: 100%;
+}
+.desktop-nav .nav-link:hover {
+    color: #ffffff; /* Sets text color to white on hover */
+    background-color: var(--primary-blue); /* This is your existing blue background */
+    border-radius: 8px; /* This is the problem */
 }

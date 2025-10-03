@@ -2,6 +2,132 @@
 /* === SAVING-GOALS.CSS: Styles for Savings Goals Page --- FINAL REVISION (Button Size Increase) === */
 /* ========================================================= */
 
+/* 💥 FIX: Applying Pill-Shaped Header Styles from Accounts Page */
+#main-header {
+    background-color: #ffffff !important; 
+    
+    /* LIGHT MODE: Explicit Black Border */
+    border: 1px solid #000000; 
+    
+    border-radius: 40px !important; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+    
+    /* Center the pill in the viewport: */
+    width: 85%; 
+    max-width: 1200px;
+    margin: 20px auto 0 auto !important; 
+    
+    padding: 10px 25px; 
+    
+    display: flex;
+    gap: 40px; 
+    justify-content: space-between; 
+    align-items: center;
+}
+
+/* 💥 Hide the search box completely */
+.search-box {
+    display: none !important;
+}
+
+/* 💥 Desktop navigation spacing */
+.desktop-nav {
+    flex-grow: 1; 
+    justify-content: center; 
+    gap: 35px; 
+    padding-left: 0; 
+}
+.header-left {
+    padding-right: 0; 
+}
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+    margin-left: 20px; 
+}
+
+/* Dark Mode Overrides (Header) */
+.dark-mode #main-header {
+    background-color: #ffffff !important;
+    border: 1px solid #c0c0c0;
+    border-bottom: none !important; 
+}
+.dark-mode .header-right .icon-btn {
+    background-color: transparent !important; 
+    color: #444 !important; 
+    border: 1px solid #ccc !important;
+    border-radius: 50% !important;
+}
+.dark-mode .user-profile .user-details .user-name, 
+.dark-mode .user-profile .user-details .user-email {
+    color: #333 !important;
+}
+.desktop-nav .nav-link {
+    color: #444; 
+    padding: 10px 0; 
+}
+.dark-mode .desktop-nav .nav-link {
+    color: #444 !important;
+}
+.dark-mode .desktop-nav .nav-link.active {
+    color: var(--primary-blue) !important;
+}
+/* --- End Navbar Styles --- */
+
+
+/* --- Mobile View Adjustments --- */
+@media (max-width: 768px) {
+    /* Hide desktop navigation and user profile */
+    .desktop-nav, 
+    .user-profile {
+        display: none !important;
+    }
+    
+    /* Adjust mobile header padding/layout to center remaining items (Logo + right icons) */
+    #main-header {
+        width: 90%; 
+        padding: 8px 15px; 
+        justify-content: space-between; 
+        margin: 20px auto 0 auto !important;
+        gap: 0;
+    }
+    
+    /* Group the mobile toggle, notifications, and theme toggle tightly */
+    .header-right {
+        gap: 5px; 
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    /* Show the mobile menu button (if applicable) */
+    .menu-toggle-mobile {
+        display: block !important;
+    }
+
+    .goals-header-bar { 
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 15px; 
+    }
+    .goals-header-bar .btn-primary {
+        width: 100%;
+    }
+    .goals-grid {
+        grid-template-columns: 1fr;
+    }
+    .form-group-inline {
+        flex-direction: column;
+        gap: 0;
+    }
+    .form-actions button {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+/* --- End Mobile View Adjustments --- */
+
+
 /* --- Page Header/Action Bar & Button Fix --- */
 .goals-header-bar {
     display: flex;
@@ -266,27 +392,4 @@
 .form-group input, .form-group select { 
     padding: 0.75rem 1rem; border: 1px solid var(--border-color); border-radius: var(--squircle-radius); 
     background-color: var(--bg-main); color: var(--text-primary); width: 100%; 
-}
-
-/* --- Responsiveness --- */
-@media (max-width: 768px) {
-    .goals-header-bar { 
-        flex-direction: column; 
-        align-items: flex-start; 
-        gap: 15px; 
-    }
-    .goals-header-bar .btn-primary {
-        width: 100%;
-    }
-    .goals-grid {
-        grid-template-columns: 1fr;
-    }
-    .form-group-inline {
-        flex-direction: column;
-        gap: 0;
-    }
-    .form-actions button {
-        width: 100%;
-        margin-top: 10px;
-    }
 }

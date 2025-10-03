@@ -84,94 +84,132 @@ body.dark-mode {
 
 
 /* --- 1. HEADER (STICKY NAVBAR) STYLES --- */
+
+/* 💥 Applying Pill-Shaped Header Styles */
 #main-header {
+    background-color: #ffffff !important; 
+    
+    /* LIGHT MODE: Explicit Black Border */
+    border: 1px solid #000000; 
+    
+    border-radius: 40px !important; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+    
+    /* Center the pill in the viewport: */
+    width: 85%; 
+    max-width: 1200px;
+    margin: 20px auto 0 auto !important; /* Overrides original margin */
+    
+    padding: 10px 25px; 
+    height: auto; /* Allow content to dictate height */
     position: sticky; 
     top: 20px;          
     z-index: 10; 
     
-    height: 70px; 
     display: flex;
+    /* FIX: Increase space between the three major blocks (Logo, Nav, Icons) */
+    gap: 40px; 
+    justify-content: space-between; 
     align-items: center;
-    justify-content: space-between;
-    padding: 0 3rem; 
-    flex-shrink: 0;
-
-    margin-left: 50px; 
-    margin-right: 50px;
-    width: calc(100% - 100px); 
-    border-radius: 40px; 
-    
-    background-color: var(--bg-surface);
-    border: 1px solid var(--border-color); 
-    box-shadow: 
-        0 0 0 3px var(--text-primary),
-        0 8px 15px rgba(0, 0, 0, 0.4); 
-    transition: var(--transition-medium); 
+    flex-shrink: 0; /* Prevent shrinking */
 }
 
-/* FIX: Menu Centering - Remove excess margin from logo area */
-.header-left { 
-    margin-right: 0; 
+/* 💥 Header Spacing Fixes */
+.header-left {
+    padding-right: 0; 
 }
-.sticky-logo-title-area { display: flex; align-items: center; gap: 0.75rem; }
-.main-header-logo { height: 50px; width: auto; object-fit: contain; }
-.header-title { display: none; } 
+/* Ensure margin is removed from the search bar (now removed from HTML but kept for robustness) */
+.search-box {
+    display: none !important;
+}
 
-/* DESKTOP NAVIGATION BAR */
+/* Desktop navigation layout */
 .desktop-nav {
-    /* FIX: Menu Centering */
-    flex-grow: 1;
-    display: flex;
-    gap: 0.5rem; 
+    flex-grow: 1; 
+    display: flex; 
     justify-content: center; 
+    gap: 10px; 
+    padding-left: 0; 
     margin-left: 0; 
     margin-right: 0;
 }
 
-.desktop-nav .nav-link {
-    font-size: 1rem; 
-    font-weight: 500;
-    color: var(--text-secondary);
-    text-decoration: none;
-    transition: var(--transition-fast);
-
-    padding: 0.5rem 1rem; 
-    border-radius: 20px; 
-    border: 2px solid transparent; 
-}
-
-.desktop-nav .nav-link:hover {
-    color: var(--primary-blue); 
-    background-color: var(--nav-link-hover-bg); 
-    border-color: var(--nav-link-hover-border); 
-    border-bottom: 2px solid var(--nav-link-hover-border);
-    transform: none;
-}
-
-.desktop-nav .nav-link.active {
-    color: var(--primary-blue);
-    font-weight: 600;
-    border: none;
-    border-bottom: 3px solid var(--primary-blue);
-    border-radius: 0;
-    padding: 0.5rem 0; 
-    margin: 0 0.5rem; 
-}
-
-.desktop-nav .nav-link.active:hover {
-    background-color: transparent;
-    border-bottom: 3px solid var(--primary-blue);
-    border-color: transparent; 
-    transform: none;
-}
-
-/* Right Side Icons and User */
+/* Tighter spacing for the right-hand elements (buttons/user profile) */
 .header-right {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 10px; 
+    margin-left: 20px; 
 }
 
+
+/* Dark Mode Overrides (Header) */
+.dark-mode #main-header {
+    background-color: #ffffff !important;
+    /* DARK MODE: Light Gray Border for contrast on dark background */
+    border: 1px solid #c0c0c0;
+    border-bottom: none !important; 
+}
+
+/* Icons and Text against the white header */
+.dark-mode .icon-btn {
+    background-color: transparent !important; 
+    color: #444 !important; 
+    border: 1px solid #ccc !important;
+    border-radius: 50% !important;
+}
+.dark-mode .user-profile .user-details .user-name, 
+.dark-mode .user-profile .user-details .user-email {
+    color: #333 !important;
+}
+
+/* Navigation Links (Desktop) */
+.desktop-nav .nav-link {
+    color: #444; /* Default text color in light mode */
+    font-weight: 500;
+    padding: 10px 15px; 
+    text-decoration: none;
+    transition: var(--transition-fast);
+    border-radius: 30px; 
+    border: none;
+}
+
+/* FIX 1: Restore Hover Effect (Pill-shaped hover) */
+.desktop-nav .nav-link:hover {
+    color: var(--primary-blue);
+    background-color: var(--primary-blue-light); 
+    border: none;
+    transform: none;
+}
+.dark-mode .desktop-nav .nav-link:hover {
+    background-color: var(--primary-blue-light); 
+}
+
+/* FIX 2: Active Link (Blue Pill Background) - REMOVING UNDERLINE */
+.desktop-nav .nav-link.active {
+    color: white; 
+    font-weight: 600;
+    background-color: var(--primary-blue); 
+    
+    /* REMOVE ALL UNDERLINE STYLES */
+    border: none;
+    border-bottom: none;
+    padding: 10px 15px; 
+    margin: 0;
+}
+.desktop-nav .nav-link.active:hover {
+    background-color: var(--primary-blue);
+    color: white;
+}
+/* --- End Navbar Styles --- */
+
+
+/* FIX: Menu Centering - Remove excess margin from logo area */
+.sticky-logo-title-area { display: flex; align-items: center; gap: 0.75rem; }
+.main-header-logo { height: 50px; width: auto; object-fit: contain; }
+.header-title { display: none; } 
+
+/* Right Side Icons and User */
 .icon-btn {
     width: 38px; height: 38px; border-radius: 6px; 
     background-color: var(--bg-main);
@@ -183,28 +221,6 @@ body.dark-mode {
 }
 .icon-btn:hover { background-color: var(--primary-blue-light); color: var(--primary-blue); }
 .dark-mode .icon-btn:hover { background-color: rgba(255,255,255,0.1); color: var(--primary-blue); }
-
-/* Search Bar (Desktop) */
-.search-box { 
-    position: relative; 
-    /* 🛠️ FIX: Reduced width and added margin for spacing */
-    width: 200px; 
-    margin-right: 0.5rem;
-    height: 38px; 
-}
-.search-input {
-    width: 100%; height: 100%;
-    padding: 0.5rem 1rem 0.5rem 3rem;
-    border-radius: 6px;
-    border: 1px solid var(--border-color);
-    background-color: var(--bg-main);
-    color: var(--text-primary);
-    transition: var(--transition-fast);
-}
-.search-icon {
-    position: absolute; left: 1rem; top: 50%;
-    transform: translateY(-50%); color: var(--text-secondary);
-}
 
 /* Notification Badge & Dropdown */
 .notification-area { position: relative; }
@@ -355,9 +371,33 @@ body.dark-mode {
 .progress-bar { height: 8px; background-color: var(--border-color); border-radius: 4px; overflow: hidden; }
 .progress-bar div { height: 100%; border-radius: 4px; transition: width 0.5s ease-out; }
 
-/* Quick Stats */
-.stat-list p { font-size: 0.95rem; margin-bottom: 0.8rem; padding-bottom: 0.2rem; border-bottom: 1px dotted var(--border-color); }
-.stat-list p:last-child { border-bottom: none; margin-bottom: 0; }
+/* Quick Stats FIX: Using Flexbox for proper alignment */
+.stat-list p { 
+    /* This makes the label left-aligned and the value right-aligned */
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    
+    font-size: 0.95rem; 
+    font-weight: 500; 
+    margin-bottom: 0.8rem; 
+    padding-bottom: 0.2rem; 
+    border-bottom: 1px dotted var(--border-color); 
+    color: var(--text-primary);
+}
+.stat-list p:last-child { 
+    border-bottom: none; 
+    margin-bottom: 0; 
+}
+.stat-list p span {
+    font-weight: 600; 
+    float: none !important; 
+}
+/* Explicitly style the color of the span elements in the stat list */
+.stat-list p:nth-child(1) span { color: var(--green-success); } /* Savings Rate: Green */
+.stat-list p:nth-child(2) span { color: var(--red-danger); }   /* Highest Expense Category: Red */
+.stat-list p:nth-child(3) span { color: var(--green-success); } /* Net Change: Green */
+/* END Quick Stats FIX */
 
 
 /* --- 3. MOBILE MENU STYLES (WITH THEME FIX) --- */
@@ -369,7 +409,9 @@ body.dark-mode {
     z-index: 1000; 
     transform: translateX(100%);
     transition: transform 0.3s ease-out, background-color 0.3s ease, color 0.3s ease;
-    padding: 1.5rem 1rem; display: flex; flex-direction: column;
+    padding: 1.5rem 1rem; 
+    display: flex; 
+    flex-direction: column;
     box-shadow: var(--shadow-lg);
 }
 
@@ -380,32 +422,30 @@ body.dark-mode {
 }
 
 #mobileMenu.open { transform: translateX(0); }
-#mobileMenu .close-btn { position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: var(--text-primary); font-size: 1.5rem; cursor: pointer; padding: 0; }
+#mobileMenu .close-btn { 
+    position: absolute; 
+    top: 1rem; 
+    right: 1rem; 
+    background: none; 
+    border: none; 
+    color: var(--text-primary); 
+    font-size: 1.5rem; 
+    cursor: pointer; 
+    padding: 0; 
+}
 #mobileMenu.dark-mode .close-btn { color: var(--text-primary-dark); } /* Ensure X is light in dark mode */
 
-.menu-search-box { margin-top: 3rem; margin-bottom: 2rem; position: relative; }
-.mobile-menu .search-input { padding-left: 3rem; } /* Base style */
-
-/* FIX 2: Light Mode Search Bar in Mobile Menu */
-.menu-search-box .search-input { 
-    background-color: var(--bg-main-light); /* Light background */
-    border: 1px solid var(--border-light); 
-    color: var(--text-primary-light); 
-}
-.menu-search-box .search-icon { color: var(--text-secondary-light); }
-
-/* FIX 3: Dark Mode Search Bar in Mobile Menu */
-#mobileMenu.dark-mode .menu-search-box .search-input { 
-    background-color: var(--bg-main-dark); /* Dark background */
-    border: 1px solid var(--border-dark); 
-    color: var(--text-primary-dark); 
-}
-#mobileMenu.dark-mode .menu-search-box .search-icon { color: var(--text-secondary-dark); }
-
+/* REMOVED: menu-search-box CSS block */
 
 #mobileMenu .nav-link { 
-    display: flex; align-items: center; gap: 1rem; padding: 1rem 0; font-size: 1.1rem; font-weight: 500; text-decoration: none; 
-    color: var(--text-primary); /* Base color from theme */
+    display: flex; 
+    align-items: center; 
+    gap: 1rem; 
+    padding: 1rem 0; 
+    font-size: 1.1rem; 
+    font-weight: 500; 
+    text-decoration: none; 
+    color: var(--text-primary); 
     transition: var(--transition-fast); 
 }
 
@@ -413,28 +453,53 @@ body.dark-mode {
     color: var(--text-primary-dark);
 }
 
-#mobileMenu .nav-link i { font-size: 1.2rem; width: 24px; text-align: center; }
-#mobileMenu .nav-link:hover, #mobileMenu .nav-link.active { color: var(--primary-blue); }
-.logout-mobile { margin-top: auto; border-top: 1px solid var(--border-color); padding-top: 1rem !important; }
-#mobileMenu.dark-mode .logout-mobile { border-top: 1px solid var(--border-dark); }
+#mobileMenu .nav-link i { 
+    font-size: 1.2rem; 
+    width: 24px; 
+    text-align: center; 
+}
+
+/* Adjusted margin-top since search box is removed */
+.logout-mobile { 
+    margin-top: auto; 
+    border-top: 1px solid var(--border-color); 
+    padding-top: 1rem !important; 
+}
+
+#mobileMenu.dark-mode .logout-mobile { 
+    border-top: 1px solid var(--border-dark); 
+}
 
 
 /* --- 4. RESPONSIVE MOBILE OVERRIDES --- */
 @media (max-width: 1024px) {
-    /* Header Fixes */
-    .desktop-nav, .desktop-search, .user-details { display: none; }
-    .menu-toggle-mobile { display: flex !important; order: 1; margin-left: 0.5rem; }
-    .header-right { order: 3; gap: 0.5rem; padding-right: 0.5rem; }
-    .user-profile .desktop-logout { display: none; }
-    
-    /* Sticky Bar Adjustments */
-    #main-header { 
-        padding: 0 0.5rem;
-        margin: 10px 10px 0 10px; 
-        width: calc(100% - 20px); 
+    /* Hide desktop navigation and user profile */
+    .desktop-nav, 
+    .user-profile {
+        display: none !important;
     }
-    .header-left { order: 2; flex-grow: 1; justify-content: flex-start; padding-left: 0.5rem; }
-    .main-header-logo { height: 40px; } 
+    
+    /* FIX: Adjust mobile header padding/layout to center remaining items (Logo + right icons) */
+    #main-header {
+        width: 90%; 
+        padding: 8px 15px; 
+        justify-content: space-between; 
+        margin: 20px auto 0 auto !important;
+        gap: 0;
+    }
+    
+    /* Group the mobile toggle, notifications, and theme toggle tightly */
+    .header-right {
+        gap: 5px; 
+        padding-left: 0;
+        margin-left: 0;
+        flex-shrink: 0;
+    }
+
+    /* Show the mobile menu button */
+    .menu-toggle-mobile {
+        display: block !important;
+    }
 
     /* Content Grid to Single Column */
     #main-content {
@@ -457,4 +522,9 @@ body.dark-mode {
 @media (min-width: 1025px) {
     #mobileMenu { display: none; }
     .menu-toggle-mobile { display: none !important; }
+}
+.desktop-nav .nav-link:hover {
+    color: #ffffff; /* Sets text color to white on hover */
+    background-color: var(--primary-blue); /* This is your existing blue background */
+    border-radius: 8px; /* This will keep the rounded shape */
 }

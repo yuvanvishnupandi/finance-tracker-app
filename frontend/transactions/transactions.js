@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalTitle = modal.querySelector('h2');
     const modalSubmitBtn = modal.querySelector('.modal-submit-btn');
     const transactionTableBody = document.querySelector('#transactionTable tbody');
-    const filterControls = document.querySelectorAll('.filter-select, #transactionSearchInput');
+    // Removed #transactionSearchInput from the query selector below
+    const filterControls = document.querySelectorAll('.filter-select'); 
     const sortDateBtn = document.getElementById('sortDateBtn');
     
     // 👇 NEW LINE: Reference for all logout links (desktop and mobile)
@@ -183,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const accountFilter = document.getElementById('filter-account').value;
         const categoryFilter = document.getElementById('filter-category').value;
         const dateFilter = document.getElementById('filter-date-range').value; // Get the date filter value
-        const searchTerm = document.getElementById('transactionSearchInput').value.toLowerCase().trim();
+        // const searchTerm = document.getElementById('transactionSearchInput').value.toLowerCase().trim(); // REMOVED SEARCH INPUT
 
         let visibleCount = 0;
 
@@ -193,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const rowType = row.getAttribute('data-type');
             const rowAccount = row.getAttribute('data-account');
             const rowCategory = row.getAttribute('data-category');
-            const rowDescription = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+            // const rowDescription = row.querySelector('td:nth-child(2)').textContent.toLowerCase(); // REMOVED FOR SEARCH
             const rowDate = row.getAttribute('data-id') ? transactionData.find(t => t.id === row.getAttribute('data-id')).date : ''; // Get YYYY-MM-DD date
 
             let isVisible = true;
@@ -203,8 +204,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (isVisible && accountFilter !== 'all' && rowAccount !== accountFilter) { isVisible = false; }
             if (isVisible && categoryFilter !== 'all' && rowCategory !== categoryFilter) { isVisible = false; }
             
-            // Search Filter
-            if (isVisible && searchTerm && !rowDescription.includes(searchTerm)) { isVisible = false; }
+            // Search Filter (Now completely removed)
+            // if (isVisible && searchTerm && !rowDescription.includes(searchTerm)) { isVisible = false; }
             
             // Date Range Filter
             if (isVisible && dateFilter !== 'all' && !isDateInRange(rowDate, dateFilter)) { isVisible = false; }
@@ -220,8 +221,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Filter Change Handlers
     filterControls.forEach(control => {
+        // Only listening for 'change' now, as there's no input field
         control.addEventListener('change', applyFiltersAndSearch);
-        control.addEventListener('input', applyFiltersAndSearch);
     });
 
     // --- Modal and Form Handlers ---
@@ -364,7 +365,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log('User logged out. Redirecting to login page.');
                 
                 // Redirect to the login page using the correct relative path
-                // This will prevent the "Site can't be reached" error by not hardcoding the port.
                 window.location.href = '../auth/index.html'; 
             });
         });

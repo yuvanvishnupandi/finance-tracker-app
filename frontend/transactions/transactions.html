@@ -17,19 +17,12 @@
 
         <nav id="mobileMenu" class="mobile-menu">
             <button class="close-btn" id="closeMobileMenu"><i class="fas fa-times"></i></button>
-            <div class="menu-search-box">
-                 <input type="text" placeholder="Search menu items..." class="search-input">
-                 <i class="fas fa-search search-icon"></i>
-            </div>
-
             <a href="../dashboard/dashboard.html" class="nav-link"><i class="fas fa-home"></i> Dashboard</a>
             <a href="transactions.html" class="nav-link active"><i class="fas fa-exchange-alt"></i> Transactions</a>
             <a href="../accounts/accounts.html" class="nav-link"><i class="fas fa-wallet"></i> Accounts</a>
             <a href="../saving-goals/saving-goals.html" class="nav-link"><i class="fas fa-bullseye"></i> Saving Goals</a>
-            <a href="../budgeting/budgeting.html" class="nav-link">Budgeting</a>
-            <a href="#" class="nav-link"><i class="fas fa-cog"></i> Settings</a>
-            
-            <a href="#" class="nav-link logout-mobile"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            <a href="../budgeting/budgeting.html" class="nav-link"><i class="fas fa-tasks"></i> Budgeting</a>
+            <a href="../auth/index.html" class="nav-link logout-mobile"><i class="fas fa-sign-out-alt"></i> Logout</a>
         </nav>
         
         <div class="main-content-wrapper">
@@ -49,10 +42,6 @@
                     <a href="../budgeting/budgeting.html" class="nav-link">Budgeting</a>
                 </nav>
 
-                <div class="search-box desktop-search">
-                    <input type="text" placeholder="Search transactions, accounts..." class="search-input">
-                    <i class="fas fa-search search-icon"></i>
-                </div>
                 <div class="header-right">
                     <button id="openMobileMenu" class="icon-btn menu-toggle-mobile" title="Menu">
                         <i class="fas fa-bars"></i>
@@ -80,7 +69,7 @@
                             <p class="user-name">John Doe</p> 
                             <span class="user-email">john@example.com</span>
                         </div>
-                        <a href="#" class="logout-link desktop-logout" title="Logout"><i class="fas fa-sign-out-alt"></i></a>
+                        <a href="../auth/index.html" class="logout-link desktop-logout" title="Logout"><i class="fas fa-sign-out-alt"></i></a>
                     </div>
                 </div>
             </header>
@@ -88,7 +77,6 @@
                 
                 <div class="transactions-header-bar">
                     <div class="transaction-title-group">
-                        <!-- <i class="fas fa-exchange-alt page-icon"></i> -->
                         <h1>All Transactions</h1>
                     </div>
                     </div>
@@ -137,11 +125,6 @@
                         </select>
                     </div>
                     
-                    <div class="filter-search-group">
-                         <input type="text" placeholder="Search description..." class="search-input transaction-search-input" id="transactionSearchInput">
-                         <i class="fas fa-search search-icon"></i>
-                    </div>
-
                     <div class="action-buttons-group">
                         <button class="btn-primary" id="addNewTransactionBtn">
                             <i class="fas fa-circle-plus"></i> Add New Transaction

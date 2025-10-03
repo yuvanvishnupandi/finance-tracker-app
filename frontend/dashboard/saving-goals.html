@@ -27,8 +27,6 @@
             <a href="../accounts/accounts.html" class="nav-link"><i class="fas fa-wallet"></i> Accounts</a>
             <a href="saving-goals.html" class="nav-link active"><i class="fas fa-bullseye"></i> Saving Goals</a>
             <a href="../budgeting/budgeting.html" class="nav-link"><i class="fas fa-tasks"></i> Budgeting</a>
-            <a href="#" class="nav-link"><i class="fas fa-cog"></i> Settings</a>
-            
             <a href="../auth/index.html" class="nav-link logout-mobile"><i class="fas fa-sign-out-alt"></i> Logout</a>
         </nav>
         
@@ -92,6 +90,22 @@
                     <h1><i class="fas fa-bullseye page-icon"></i> Savings Goals</h1>
                     <button id="add-goal-btn" class="btn-primary">➕ Set New Goal</button>
                 </div>
+                
+                <div class="goals-summary-bar card-general">
+                    <div class="summary-item">
+                        <p class="summary-label">Total Targets</p>
+                        <h3 class="summary-value" id="totalTargets">₹ 3,50,000</h3>
+                    </div>
+                    <div class="summary-item">
+                        <p class="summary-label">Total Saved</p>
+                        <h3 class="summary-value income" id="totalSaved">₹ 1,50,000</h3>
+                    </div>
+                    <div class="summary-item">
+                        <p class="summary-label">Overall Progress</p>
+                        <h3 class="summary-value" id="overallProgress">42.8%</h3>
+                    </div>
+                </div>
+
 
                 <div id="goal-form-container" class="form-card card-general hidden">
                     <h2>Set a New Goal</h2>
@@ -106,9 +120,13 @@
                                 <input type="number" id="target-amount" placeholder="e.g., 75000" min="1" required>
                             </div>
                             <div class="form-group half-width">
-                                <label for="target-date">Target Date (Optional)</label>
-                                <input type="date" id="target-date" title="Target Date">
+                                <label for="current-saved">Current Saved (₹)</label>
+                                <input type="number" id="current-saved" placeholder="0" min="0" value="0">
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="target-date">Target Date (Optional)</label>
+                            <input type="date" id="target-date" title="Target Date">
                         </div>
                         <div class="form-actions">
                             <button type="submit" class="btn-primary">Save Goal</button>
@@ -118,21 +136,21 @@
                 </div>
 
                 <div id="goals-list" class="goals-grid">
-                    <p id="loading-message">Loading goals...</p>
-                </div>
+                    </div>
             </main>
         </div>
     </div>
 
     <div id="contribution-modal" class="modal">
         <div class="modal-content">
-            <span class="close-btn-modal">&times;</span>
-            <h2>Contribute to <span id="modal-goal-name" class="modal-highlight"></span></h2>
+            <span class="close-btn-modal modal-close-btn-contribute">&times;</span>
+            <h2>Transfer Funds</h2>
+            <p class="modal-subtitle">Contribute to: <span id="modal-goal-name" class="modal-highlight"></span></p>
             <form id="contribute-form">
                 <input type="hidden" id="contributing-goal-id">
                 
                 <div class="form-group">
-                    <label for="contribution-amount">Amount to Contribute (₹)</label>
+                    <label for="contribution-amount">Amount to Transfer (₹)</label>
                     <input type="number" id="contribution-amount" placeholder="e.g., 5000" min="1" required>
                 </div>
                 
@@ -140,6 +158,8 @@
                     <label for="source-account">Source Account</label>
                     <select id="source-account" name="source-account" required>
                         <option value="" disabled selected>Select Source Account</option>
+                        <option value="icici">ICICI Savings</option>
+                        <option value="cash">Cash Wallet</option>
                     </select>
                 </div>
 

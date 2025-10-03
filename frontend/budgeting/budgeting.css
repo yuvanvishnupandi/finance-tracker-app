@@ -2,11 +2,83 @@
 /* === BUDGETING.CSS: Budget Management Styles === */
 /* ========================================================= */
 
-/* --- Page Header (FIXED ALIGNMENT) --- */
+/* --- Header Styles (Refactored for Theming and Active Link) --- */
+#main-header {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--text-primary);
+    border-radius: 40px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 85%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 10px 25px;
+    position: sticky;
+    top: 20px;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* FIX: Creates a "light theme island" for the header in dark mode.
+   All child elements will now automatically use light theme colors. */
+.dark-mode #main-header {
+    --bg-surface: var(--bg-surface-light);
+    --text-primary: var(--text-primary-light);
+    --text-secondary: var(--text-secondary-light);
+    --border-color: var(--border-light);
+    --bg-main: var(--bg-main-light);
+    border: 1px solid #c0c0c0; /* Softer border for contrast */
+}
+
+.header-left { padding-right: 0; }
+.desktop-nav {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+.desktop-nav .nav-link {
+    color: var(--text-secondary);
+    padding: 10px 15px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-radius: 30px; /* This creates the consistent pill shape */
+    white-space: nowrap;
+}
+
+.desktop-nav .nav-link:hover {
+    color: var(--primary-blue);
+    background-color: var(--primary-blue-light);
+}
+
+.desktop-nav .nav-link.active {
+    color: white;
+    background-color: var(--primary-blue);
+    font-weight: 600;
+}
+
+/* Ensure hover doesn't change the active pill's style */
+.desktop-nav .nav-link.active:hover {
+    color: white;
+    background-color: var(--primary-blue);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+/* --- End Header Styles --- */
+
+
+/* --- Page Header --- */
 .budgeting-header {
     display: flex;
     justify-content: space-between;
-    align-items: center; 
+    align-items: center;
     margin-bottom: 2rem;
     padding-bottom: 10px;
     border-bottom: 1px solid var(--border-color);
@@ -17,13 +89,11 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    margin: 0; 
+    margin: 0;
 }
-
-/* Stylize the "Set New Budget" button for size and prominence */
 #setNewBudgetBtn {
-    padding: 0.75rem 1.25rem; 
-    font-size: 1rem; 
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
     font-weight: 600;
     border-radius: 8px;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -44,6 +114,7 @@
     margin-bottom: 2rem;
     border-radius: var(--squircle-radius);
     box-shadow: var(--shadow-md);
+    background-color: var(--bg-surface);
 }
 .summary-item {
     text-align: center;
@@ -90,6 +161,7 @@
     border: 1px solid var(--border-color);
     box-shadow: var(--shadow-md);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    background-color: var(--bg-surface);
 }
 .budget-card:hover {
     transform: translateY(-4px);
@@ -106,9 +178,9 @@
     font-size: 2rem;
     color: var(--primary-blue);
 }
-.budget-card:nth-child(1) .category-icon { color: #FFC107; } 
-.budget-card:nth-child(2) .category-icon { color: #6F42C1; } 
-.budget-card:nth-child(3) .category-icon { color: #00AEEF; } 
+.budget-card:nth-child(1) .category-icon { color: #FFC107; }
+.budget-card:nth-child(2) .category-icon { color: #6F42C1; }
+.budget-card:nth-child(3) .category-icon { color: #00AEEF; }
 
 .category-name {
     font-size: 1.4rem;
@@ -126,7 +198,6 @@
     font-weight: 600;
 }
 
-/* Progress Bar and Info */
 .progress-info {
     display: flex;
     justify-content: space-between;
@@ -145,7 +216,6 @@
     transition: width 0.5s ease-out, background-color 0.3s ease;
 }
 
-/* Budget Alert Tags */
 .budget-alert-tag {
     display: inline-block;
     padding: 4px 10px;
@@ -169,54 +239,66 @@
     color: white;
 }
 
-/* --- MODAL STYLES (REQUIRED FIX) --- */
-.modal { 
-    display: none; /* 🛠️ FIX: Hides the modal by default */
-    position: fixed; 
-    z-index: 2000; 
-    left: 0; 
-    top: 0; 
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgba(0, 0, 0, 0.75); 
-    padding-top: 50px; 
+/* --- MODAL STYLES --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
 }
-.modal.open { 
-    display: block; 
-    animation: fadeIn 0.3s;
+.modal.open {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.modal-content { 
-    background-color: var(--bg-surface); 
-    margin: 5% auto; 
-    padding: 2rem; 
+.modal-content {
+    background-color: var(--bg-surface);
+    margin: 5% auto;
+    padding: 2rem;
     border-radius: 12px;
-    width: 90%; 
-    max-width: 450px; 
-    position: relative; 
+    width: 90%;
+    max-width: 450px;
+    position: relative;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     border: 1px solid var(--border-color);
 }
-.close-btn-modal { 
-    color: var(--text-secondary); 
-    position: absolute; 
-    top: 1rem; 
-    right: 1.5rem; 
-    font-size: 28px; 
-    font-weight: bold; 
+.close-btn-modal {
+    color: var(--text-secondary);
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 28px;
+    font-weight: bold;
     cursor: pointer;
 }
-/* General form/input styling */
 .form-group label { font-weight: 500; margin-bottom: 0.5rem; color: var(--text-primary); font-size: 0.95rem; display: block; }
-.form-group input, .form-group select { 
-    padding: 0.75rem 1rem; border: 1px solid var(--border-color); border-radius: var(--squircle-radius); 
-    background-color: var(--bg-main); color: var(--text-primary); width: 100%; 
-    margin-bottom: 1rem; /* Added margin for spacing */
+.form-group input, .form-group select {
+    padding: 0.75rem 1rem; border: 1px solid var(--border-color); border-radius: var(--squircle-radius);
+    background-color: var(--bg-main); color: var(--text-primary); width: 100%;
+    margin-bottom: 1rem;
 }
 
 
-/* Responsive Overrides */
+/* --- Responsive Overrides --- */
 @media (max-width: 768px) {
+    .desktop-nav,
+    .user-profile {
+        display: none;
+    }
+    #main-header {
+        width: 90%;
+        padding: 8px 15px;
+        gap: 0;
+    }
+    .header-right {
+        gap: 5px;
+        padding-left: 0;
+        margin-left: 0;
+    }
     .budget-summary-bar {
         flex-direction: column;
         align-items: stretch;
